@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">cows_feeding_config</string>
+    <string name="app_name">奶牛饲料配置系统</string>
+    <string name="data_text">奶牛饲料养分数据</string>
+    <string name="need_text">奶牛营养需求数据</string>
+    <string name="optimize">奶牛饲料优化</string>
 </resources>
