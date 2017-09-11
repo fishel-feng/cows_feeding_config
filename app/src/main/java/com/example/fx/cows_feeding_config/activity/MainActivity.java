@@ -10,9 +10,9 @@ import com.example.fx.cows_feeding_config.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private android.widget.Button data;
-    private android.widget.Button need;
-    private android.widget.Button optimize;
+    private Button btnFodder;
+    private Button btnCow;
+    private Button btnOptimize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,27 +23,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView() {
-        this.optimize = (Button) findViewById(R.id.optimize);
-        this.need = (Button) findViewById(R.id.need);
-        this.data = (Button) findViewById(R.id.data);
+        this.btnOptimize = (Button) findViewById(R.id.btn_optimize);
+        this.btnCow = (Button) findViewById(R.id.btn_cow);
+        this.btnFodder = (Button) findViewById(R.id.btn_fodder);
     }
 
     private void initEvent() {
-        data.setOnClickListener(this);
-        need.setOnClickListener(this);
-        optimize.setOnClickListener(this);
+        btnFodder.setOnClickListener(this);
+        btnCow.setOnClickListener(this);
+        btnOptimize.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.data:
+            case R.id.btn_fodder:
                 startActivity(new Intent(this, FodderActivity.class));
                 break;
-            case R.id.need:
+            case R.id.btn_cow:
                 startActivity(new Intent(this, CowActivity.class));
                 break;
-            case R.id.optimize:
+            case R.id.btn_optimize:
                 startActivity(new Intent(this, OptimizeActivity.class));
                 break;
         }
