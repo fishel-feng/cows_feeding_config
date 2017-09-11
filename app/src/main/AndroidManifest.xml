@@ -16,8 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.NeedActivity" />
-        <activity android:name=".activity.DataActivity" />
+        <activity android:name=".activity.CowActivity" />
+        <activity android:name=".activity.FodderActivity" />
         <activity android:name=".activity.OptimizeActivity"></activity>
     </application>
 

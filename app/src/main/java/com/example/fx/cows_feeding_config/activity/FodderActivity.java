@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.example.fx.cows_feeding_config.R;
 
-public class DataActivity extends AppCompatActivity {
+public class FodderActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data);
+        setContentView(R.layout.activity_fodder);
     }
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<litepal>
+    <dbname value="cows_feeding_config" />
+    <version value="1" />
+    <list>
+        <mapping class="com.example.fx.cows_feeding_config.entity.Cow" />
+        <mapping class="com.example.fx.cows_feeding_config.entity.Fodder" />
+    </list>
+</litepal>

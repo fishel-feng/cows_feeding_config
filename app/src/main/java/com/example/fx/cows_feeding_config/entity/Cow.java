@@ -1,12 +1,15 @@
 package com.example.fx.cows_feeding_config.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.litepal.crud.DataSupport;
 
 /**
  * Created by fx on 2017/9/11.
  */
 
-public class Cow extends DataSupport {
+public class Cow extends DataSupport implements Parcelable {
 
     private int id;
 
@@ -77,4 +80,45 @@ public class Cow extends DataSupport {
     public void setLactationWeeks(double lactationWeeks) {
         this.lactationWeeks = lactationWeeks;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.variety);
+        dest.writeDouble(this.weight);
+        dest.writeDouble(this.milkProduction);
+        dest.writeDouble(this.milkFat);
+        dest.writeDouble(this.milkProtein);
+        dest.writeDouble(this.lactationWeeks);
+    }
+
+    public Cow() {
+    }
+
+    protected Cow(Parcel in) {
+        this.id = in.readInt();
+        this.variety = in.readString();
+        this.weight = in.readDouble();
+        this.milkProduction = in.readDouble();
+        this.milkFat = in.readDouble();
+        this.milkProtein = in.readDouble();
+        this.lactationWeeks = in.readDouble();
+    }
+
+    public static final Creator<Cow> CREATOR = new Creator<Cow>() {
+        @Override
+        public Cow createFromParcel(Parcel source) {
+            return new Cow(source);
+        }
+
+        @Override
+        public Cow[] newArray(int size) {
+            return new Cow[size];
+        }
+    };
 }

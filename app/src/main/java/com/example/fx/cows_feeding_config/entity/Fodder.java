@@ -1,12 +1,15 @@
 package com.example.fx.cows_feeding_config.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.litepal.crud.DataSupport;
 
 /**
  * Created by fx on 2017/9/11.
  */
 
-public class Fodder extends DataSupport {
+public class Fodder extends DataSupport implements Parcelable {
 
     private int id;
 
@@ -87,4 +90,47 @@ public class Fodder extends DataSupport {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.name);
+        dest.writeDouble(this.dryMatter);
+        dest.writeDouble(this.calcium);
+        dest.writeDouble(this.phosphorus);
+        dest.writeDouble(this.energy);
+        dest.writeDouble(this.crudeProtein);
+        dest.writeDouble(this.price);
+    }
+
+    public Fodder() {
+    }
+
+    protected Fodder(Parcel in) {
+        this.id = in.readInt();
+        this.name = in.readString();
+        this.dryMatter = in.readDouble();
+        this.calcium = in.readDouble();
+        this.phosphorus = in.readDouble();
+        this.energy = in.readDouble();
+        this.crudeProtein = in.readDouble();
+        this.price = in.readDouble();
+    }
+
+    public static final Creator<Fodder> CREATOR = new Creator<Fodder>() {
+        @Override
+        public Fodder createFromParcel(Parcel source) {
+            return new Fodder(source);
+        }
+
+        @Override
+        public Fodder[] newArray(int size) {
+            return new Fodder[size];
+        }
+    };
 }

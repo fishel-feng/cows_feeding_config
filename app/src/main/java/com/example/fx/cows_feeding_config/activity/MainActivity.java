@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.data:
-                startActivity(new Intent(this, DataActivity.class));
+                startActivity(new Intent(this, FodderActivity.class));
                 break;
             case R.id.need:
-                startActivity(new Intent(this, NeedActivity.class));
+                startActivity(new Intent(this, CowActivity.class));
                 break;
             case R.id.optimize:
                 startActivity(new Intent(this, OptimizeActivity.class));
