@@ -15,6 +15,9 @@ public class Fodder extends DataSupport implements Parcelable {
 
     private String name;
 
+    //类型 1粗饲料2精饲料
+    private int type;
+
     private double dryMatter;
 
     private double calcium;
@@ -41,6 +44,14 @@ public class Fodder extends DataSupport implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public double getDryMatter() {
@@ -100,6 +111,7 @@ public class Fodder extends DataSupport implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeString(this.name);
+        dest.writeInt(this.type);
         dest.writeDouble(this.dryMatter);
         dest.writeDouble(this.calcium);
         dest.writeDouble(this.phosphorus);
@@ -114,6 +126,7 @@ public class Fodder extends DataSupport implements Parcelable {
     protected Fodder(Parcel in) {
         this.id = in.readInt();
         this.name = in.readString();
+        this.type = in.readInt();
         this.dryMatter = in.readDouble();
         this.calcium = in.readDouble();
         this.phosphorus = in.readDouble();
