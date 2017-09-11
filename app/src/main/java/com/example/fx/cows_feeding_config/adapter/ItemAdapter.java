@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.example.fx.cows_feeding_config.R;
 import com.example.fx.cows_feeding_config.entity.Fodder;
 
+import java.util.List;
+
 /**
  * Created by fx on 2017/9/11.
  */
@@ -21,7 +23,7 @@ public class ItemAdapter extends ArrayAdapter<Fodder> {
 
     private int resourceId;
 
-    public ItemAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull Fodder[] objects) {
+    public ItemAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Fodder> objects) {
         super(context, resource, objects);
         resourceId = resource;
     }

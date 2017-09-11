@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.fx.cows_feeding_config.activity.FodderActivity">
 
-    <android.support.v4.view.ViewPager
+    <ListView
+        android:id="@+id/lv_fodder"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.v4.view.ViewPager>
+    </ListView>
 
 </LinearLayout>
