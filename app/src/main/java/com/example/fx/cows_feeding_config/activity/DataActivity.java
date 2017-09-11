@@ -1,13 +1,15 @@
-package com.example.fx.cows_feeding_config;
+package com.example.fx.cows_feeding_config.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class OptimizeActivity extends AppCompatActivity {
+import com.example.fx.cows_feeding_config.R;
+
+public class DataActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_optimize);
+        setContentView(R.layout.activity_data);
     }
 }

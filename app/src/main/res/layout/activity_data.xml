@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.fx.cows_feeding_config.DataActivity">
+    tools:context="com.example.fx.cows_feeding_config.activity.DataActivity">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
         android:text="data"/>
 
 </android.support.constraint.ConstraintLayout>
