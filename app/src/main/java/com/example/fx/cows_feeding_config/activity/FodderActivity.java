@@ -11,7 +11,8 @@ import com.example.fx.cows_feeding_config.R;
 import com.example.fx.cows_feeding_config.adapter.FodderAdapter;
 import com.example.fx.cows_feeding_config.entity.Fodder;
 
-import java.util.ArrayList;
+import org.litepal.crud.DataSupport;
+
 import java.util.List;
 
 public class FodderActivity extends AppCompatActivity {
@@ -36,19 +37,7 @@ public class FodderActivity extends AppCompatActivity {
     }
 
     private void initData() {
-//        fodderList = DataSupport.findAll(Fodder.class);
-        fodderList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Fodder fodder = new Fodder();
-            fodder.setName("1");
-            fodderList.add(fodder);
-            Fodder fodder1 = new Fodder();
-            fodder1.setName("11");
-            fodderList.add(fodder1);
-            Fodder fodder11 = new Fodder();
-            fodder11.setName("111");
-            fodderList.add(fodder11);
-        }
+        fodderList = DataSupport.findAll(Fodder.class);
     }
 
     private void initEvent() {

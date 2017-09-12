@@ -10,6 +10,27 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
+        <TextView
+            android:text="@string/name_text"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:text="@string/type_text"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:text="@string/price_text"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

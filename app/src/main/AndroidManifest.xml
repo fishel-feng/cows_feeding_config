@@ -3,6 +3,7 @@
     package="com.example.fx.cows_feeding_config">
 
     <application
+        android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,7 +21,7 @@
         <activity android:name=".activity.FodderActivity" />
         <activity android:name=".activity.OptimizeActivity" />
         <activity android:name=".activity.FodderInfoActivity" />
-        <activity android:name=".activity.CowInfoActivity"></activity>
+        <activity android:name=".activity.CowInfoActivity"/>
     </application>
 
 </manifest>
