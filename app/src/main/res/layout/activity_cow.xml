@@ -11,6 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
+        <TextView
+            android:text="@string/variety_text"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:text="@string/weight_text"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:text="@string/milk_production_text"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
