@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_array">
+        <item>粗饲料</item>
+        <item>精饲料</item>
+    </string-array>
+</resources>

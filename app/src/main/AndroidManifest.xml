@@ -20,8 +20,12 @@
         <activity android:name=".activity.CowActivity" />
         <activity android:name=".activity.FodderActivity" />
         <activity android:name=".activity.OptimizeActivity" />
-        <activity android:name=".activity.FodderInfoActivity" />
-        <activity android:name=".activity.CowInfoActivity"/>
+        <activity
+            android:name=".activity.FodderInfoActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.CowInfoActivity"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

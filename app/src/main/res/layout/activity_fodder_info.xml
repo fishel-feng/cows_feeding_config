@@ -25,6 +25,7 @@
                 android:layout_weight="1" />
 
             <EditText
+                android:id="@+id/et_name"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -44,10 +45,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <EditText
+            <Spinner
+                android:id="@+id/sp_type"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:entries="@array/spinner_array"/>
 
         </LinearLayout>
 
@@ -65,6 +68,7 @@
                 android:layout_weight="1" />
 
             <EditText
+                android:id="@+id/et_dry_matter"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -85,6 +89,7 @@
                 android:layout_weight="1" />
 
             <EditText
+                android:id="@+id/et_calcium"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -105,6 +110,7 @@
                 android:layout_weight="1" />
 
             <EditText
+                android:id="@+id/et_phosphorus"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -125,6 +131,7 @@
                 android:layout_weight="1" />
 
             <EditText
+                android:id="@+id/et_energy"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -145,6 +152,7 @@
                 android:layout_weight="1" />
 
             <EditText
+                android:id="@+id/et_crude_protein"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -165,6 +173,7 @@
                 android:layout_weight="1" />
 
             <EditText
+                android:id="@+id/et_price"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
