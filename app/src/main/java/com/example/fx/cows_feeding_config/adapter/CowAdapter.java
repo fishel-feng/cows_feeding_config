@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.fx.cows_feeding_config.R;
-import com.example.fx.cows_feeding_config.entity.Fodder;
+import com.example.fx.cows_feeding_config.entity.Cow;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import java.util.List;
  * Created by fx on 2017/9/11.
  */
 
-public class FodderAdapter extends RecyclerView.Adapter<FodderAdapter.ViewHolder> implements View.OnClickListener {
+public class CowAdapter extends RecyclerView.Adapter<CowAdapter.ViewHolder> implements View.OnClickListener {
 
-    private List<Fodder> fodderList;
+    private List<Cow> cowList;
 
     private OnItemClickListener onItemClickListener;
 
@@ -37,23 +37,23 @@ public class FodderAdapter extends RecyclerView.Adapter<FodderAdapter.ViewHolder
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        View fodderView;
+        View cowView;
 
-        TextView tvFodderName;
-        TextView tvFodderType;
-        TextView tvFodderPrice;
+        TextView tvCowVariety;
+        TextView tvCowWeight;
+        TextView tvCowMilkProduction;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            fodderView = itemView;
-            tvFodderName = itemView.findViewById(R.id.tv_1);
-            tvFodderType = itemView.findViewById(R.id.tv_2);
-            tvFodderPrice = itemView.findViewById(R.id.tv_3);
+            cowView = itemView;
+            tvCowVariety = itemView.findViewById(R.id.tv_1);
+            tvCowWeight = itemView.findViewById(R.id.tv_2);
+            tvCowMilkProduction = itemView.findViewById(R.id.tv_3);
         }
     }
 
-    public FodderAdapter(List<Fodder> fodderList) {
-        this.fodderList = fodderList;
+    public CowAdapter(List<Cow> cowList) {
+        this.cowList = cowList;
     }
 
     @Override
@@ -65,16 +65,16 @@ public class FodderAdapter extends RecyclerView.Adapter<FodderAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Fodder fodder = fodderList.get(position);
-        holder.tvFodderName.setText(fodder.getName());
-        holder.tvFodderType.setText(fodder.getType() == 1 ? "粗饲料" : "精饲料");
-        holder.tvFodderPrice.setText(String.valueOf(fodder.getPrice()));
+        Cow cow = cowList.get(position);
+        holder.tvCowVariety.setText(cow.getVariety());
+        holder.tvCowWeight.setText(String.valueOf(cow.getWeight()));
+        holder.tvCowMilkProduction.setText(String.valueOf(cow.getMilkProduction()));
         holder.itemView.setTag(position);
     }
 
     @Override
     public int getItemCount() {
-        return fodderList.size();
+        return cowList.size();
     }
 
 

@@ -20,6 +20,7 @@
         <activity android:name=".activity.FodderActivity" />
         <activity android:name=".activity.OptimizeActivity" />
         <activity android:name=".activity.FodderInfoActivity" />
+        <activity android:name=".activity.CowInfoActivity"></activity>
     </application>
 
 </manifest>
