@@ -123,6 +123,27 @@ public class Fodder extends DataSupport implements Parcelable {
     public Fodder() {
     }
 
+    public Fodder(String name, int type, double dryMatter, double calcium, double phosphorus, double energy, double crudeProtein) {
+        this.name = name;
+        this.type = type;
+        this.dryMatter = dryMatter;
+        this.calcium = calcium;
+        this.phosphorus = phosphorus;
+        this.energy = energy;
+        this.crudeProtein = crudeProtein;
+    }
+
+    public Fodder(String name, int type, double dryMatter, double calcium, double phosphorus, double energy, double crudeProtein, double price) {
+        this.name = name;
+        this.type = type;
+        this.dryMatter = dryMatter;
+        this.calcium = calcium;
+        this.phosphorus = phosphorus;
+        this.energy = energy;
+        this.crudeProtein = crudeProtein;
+        this.price = price;
+    }
+
     protected Fodder(Parcel in) {
         this.id = in.readInt();
         this.name = in.readString();
