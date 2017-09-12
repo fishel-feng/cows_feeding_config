@@ -11,6 +11,7 @@ import com.example.fx.cows_feeding_config.R;
 import com.example.fx.cows_feeding_config.adapter.CowAdapter;
 import com.example.fx.cows_feeding_config.entity.Cow;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CowActivity extends AppCompatActivity {
@@ -36,18 +37,18 @@ public class CowActivity extends AppCompatActivity {
 
     private void initData() {
 //        cowList = DataSupport.findAll(Cow.class);
-//        fodderList = new ArrayList<>();
-//        for (int i = 0; i < 10; i++) {
-//            Fodder fodder = new Fodder();
-//            fodder.setName("1");
-//            fodderList.add(fodder);
-//            Fodder fodder1 = new Fodder();
-//            fodder1.setName("11");
-//            fodderList.add(fodder1);
-//            Fodder fodder11 = new Fodder();
-//            fodder11.setName("111");
-//            fodderList.add(fodder11);
-//        }
+        cowList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Cow cow = new Cow();
+            cow.setVariety("1");
+            cowList.add(cow);
+            Cow cow2 = new Cow();
+            cow2.setVariety("12");
+            cowList.add(cow2);
+            Cow cow22 = new Cow();
+            cow22.setVariety("122");
+            cowList.add(cow22);
+        }
     }
 
     private void initEvent() {
