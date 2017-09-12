@@ -24,6 +24,7 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/et_variety"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -44,6 +45,7 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/et_weight"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -64,6 +66,7 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/et_weight_change"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -84,6 +87,7 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/et_milk_production"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -104,6 +108,7 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/et_milk_fat"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -120,10 +125,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/milk_protein"
+                android:text="@string/milk_protein_text"
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/et_milk_protein"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -140,10 +146,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/lactation_weeks"
+                android:text="@string/lactation_weeks_text"
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/et_lactation_weeks"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />

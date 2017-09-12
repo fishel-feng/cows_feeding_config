@@ -11,7 +11,8 @@ import com.example.fx.cows_feeding_config.R;
 import com.example.fx.cows_feeding_config.adapter.CowAdapter;
 import com.example.fx.cows_feeding_config.entity.Cow;
 
-import java.util.ArrayList;
+import org.litepal.crud.DataSupport;
+
 import java.util.List;
 
 public class CowActivity extends AppCompatActivity {
@@ -36,19 +37,7 @@ public class CowActivity extends AppCompatActivity {
     }
 
     private void initData() {
-//        cowList = DataSupport.findAll(Cow.class);
-        cowList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Cow cow = new Cow();
-            cow.setVariety("1");
-            cowList.add(cow);
-            Cow cow2 = new Cow();
-            cow2.setVariety("12");
-            cowList.add(cow2);
-            Cow cow22 = new Cow();
-            cow22.setVariety("122");
-            cowList.add(cow22);
-        }
+        cowList = DataSupport.findAll(Cow.class);
     }
 
     private void initEvent() {
