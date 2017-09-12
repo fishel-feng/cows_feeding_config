@@ -1,6 +1,21 @@
 <resources>
     <string name="app_name">奶牛饲料配置系统</string>
-    <string name="data_text">奶牛饲料养分数据</string>
-    <string name="need_text">奶牛营养需求数据</string>
+    <string name="fodder_text">奶牛饲料养分数据</string>
+    <string name="cow_text">奶牛营养需求数据</string>
     <string name="optimize">奶牛饲料优化</string>
+    <string name="name_text">饲料名称</string>
+    <string name="type_text">饲料类型</string>
+    <string name="dry_matter_text">干物质(%)</string>
+    <string name="crude_protein_text">可消化粗蛋白(g/kg)</string>
+    <string name="energy_text">奶牛能量单位(NND/kg)</string>
+    <string name="calcium_text">钙(%)</string>
+    <string name="phosphorus_text">磷(%)</string>
+    <string name="price_text">价格</string>
+    <string name="variety_text">奶牛品种</string>
+    <string name="weight_text">奶牛体重</string>
+    <string name="weight_change_text">体重日变化</string>
+    <string name="milk_production_text">产乳量(kg)</string>
+    <string name="milk_fat_text">乳脂率(%)</string>
+    <string name="milk_protein">乳真蛋白(%)</string>
+    <string name="lactation_weeks">泌乳周</string>
 </resources>

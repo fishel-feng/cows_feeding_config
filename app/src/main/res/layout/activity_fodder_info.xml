@@ -17,6 +17,9 @@
             android:orientation="horizontal">
 
             <TextView
+                android:text="@string/name_text"
+                android:textSize="20sp"
+                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -34,6 +37,9 @@
             android:orientation="horizontal">
 
             <TextView
+                android:text="@string/type_text"
+                android:textSize="20sp"
+                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -51,6 +57,9 @@
             android:orientation="horizontal">
 
             <TextView
+                android:text="@string/dry_matter_text"
+                android:textSize="20sp"
+                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -68,6 +77,9 @@
             android:orientation="horizontal">
 
             <TextView
+                android:text="@string/calcium_text"
+                android:textSize="20sp"
+                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -85,6 +97,9 @@
             android:orientation="horizontal">
 
             <TextView
+                android:text="@string/phosphorus_text"
+                android:textSize="20sp"
+                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -102,6 +117,9 @@
             android:orientation="horizontal">
 
             <TextView
+                android:text="@string/energy_text"
+                android:textSize="20sp"
+                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -119,6 +137,9 @@
             android:orientation="horizontal">
 
             <TextView
+                android:text="@string/crude_protein_text"
+                android:textSize="20sp"
+                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -136,6 +157,9 @@
             android:orientation="horizontal">
 
             <TextView
+                android:text="@string/price_text"
+                android:textSize="20sp"
+                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
@@ -152,15 +176,7 @@
             android:layout_height="50dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
 
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
 
         </LinearLayout>
 

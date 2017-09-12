@@ -17,6 +17,8 @@ public class Cow extends DataSupport implements Parcelable {
 
     private double weight;
 
+    private double weightChange;
+
     private double milkProduction;
 
     private double milkFat;
@@ -47,6 +49,14 @@ public class Cow extends DataSupport implements Parcelable {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public double getWeightChange() {
+        return weightChange;
+    }
+
+    public void setWeightChange(double weightChange) {
+        this.weightChange = weightChange;
     }
 
     public double getMilkProduction() {
@@ -91,6 +101,7 @@ public class Cow extends DataSupport implements Parcelable {
         dest.writeInt(this.id);
         dest.writeString(this.variety);
         dest.writeDouble(this.weight);
+        dest.writeDouble(this.weightChange);
         dest.writeDouble(this.milkProduction);
         dest.writeDouble(this.milkFat);
         dest.writeDouble(this.milkProtein);
@@ -104,6 +115,7 @@ public class Cow extends DataSupport implements Parcelable {
         this.id = in.readInt();
         this.variety = in.readString();
         this.weight = in.readDouble();
+        this.weightChange = in.readDouble();
         this.milkProduction = in.readDouble();
         this.milkFat = in.readDouble();
         this.milkProtein = in.readDouble();

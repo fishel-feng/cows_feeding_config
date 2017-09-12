@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/data_text"
+        android:text="@string/fodder_text"
         android:textSize="20sp" />
 
     <Button
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/need_text"
+        android:text="@string/cow_text"
         android:textSize="20sp" />
 
     <Button
