@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.fx.cows_feeding_config.R;
+import com.example.fx.cows_feeding_config.activity.cow.CowActivity;
+import com.example.fx.cows_feeding_config.activity.fodder.FodderActivity;
+import com.example.fx.cows_feeding_config.activity.optimize.OptimizeActivity;
 import com.example.fx.cows_feeding_config.entity.Fodder;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {

@@ -17,17 +17,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.CowActivity" />
-        <activity android:name=".activity.FodderActivity" />
-        <activity android:name=".activity.OptimizeActivity" />
+        <activity android:name=".activity.cow.CowActivity" />
+        <activity android:name=".activity.fodder.FodderActivity" />
+        <activity android:name=".activity.optimize.OptimizeActivity" />
         <activity
-            android:name=".activity.FodderInfoActivity"
+            android:name=".activity.fodder.FodderInfoActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".activity.CowInfoActivity"
+            android:name=".activity.cow.CowInfoActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".activity.FodderAddActivity"
+            android:name=".activity.fodder.FodderAddActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.cow.CowAddActivity"
             android:windowSoftInputMode="stateHidden" />
     </application>
 

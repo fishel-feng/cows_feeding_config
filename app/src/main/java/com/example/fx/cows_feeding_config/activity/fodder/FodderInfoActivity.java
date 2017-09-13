@@ -1,4 +1,4 @@
-package com.example.fx.cows_feeding_config.activity;
+package com.example.fx.cows_feeding_config.activity.fodder;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +21,8 @@ public class FodderInfoActivity extends AppCompatActivity {
     private TextView tvEnergy;
     private TextView tvCrudeProtein;
     private TextView tvPrice;
-    private Button btnChange;
-    private Button btnDelete;
+    private Button btnChangeFodder;
+    private Button btnDeleteFodder;
 
     private Fodder fodder;
 
@@ -44,8 +44,8 @@ public class FodderInfoActivity extends AppCompatActivity {
         this.tvDryMatter = (TextView) findViewById(R.id.tv_dry_matter);
         this.tvType = (TextView) findViewById(R.id.tv_type);
         this.tvName = (TextView) findViewById(R.id.tv_name);
-        this.btnChange = (Button) findViewById(R.id.btn_change);
-        this.btnDelete = (Button) findViewById(R.id.btn_delete);
+        this.btnChangeFodder = (Button) findViewById(R.id.btn_change_fodder);
+        this.btnDeleteFodder = (Button) findViewById(R.id.btn_delete_fodder);
     }
 
     private void initData() {
@@ -63,7 +63,7 @@ public class FodderInfoActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
-        btnChange.setOnClickListener(new View.OnClickListener() {
+        btnChangeFodder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FodderInfoActivity.this, FodderAddActivity.class);
@@ -71,7 +71,7 @@ public class FodderInfoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnDelete.setOnClickListener(new View.OnClickListener() {
+        btnDeleteFodder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // TODO 删除事件

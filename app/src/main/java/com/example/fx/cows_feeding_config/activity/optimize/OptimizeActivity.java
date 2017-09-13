@@ -1,4 +1,4 @@
-package com.example.fx.cows_feeding_config.activity;
+package com.example.fx.cows_feeding_config.activity.optimize;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

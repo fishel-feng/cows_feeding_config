@@ -1,4 +1,4 @@
-package com.example.fx.cows_feeding_config.activity;
+package com.example.fx.cows_feeding_config.activity.fodder;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +24,7 @@ public class FodderAddActivity extends AppCompatActivity {
     private EditText etEnergy;
     private EditText etCrudeProtein;
     private EditText etPrice;
-    private Button btnSubmit;
+    private Button btnSubmitFodder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class FodderAddActivity extends AppCompatActivity {
         this.etDryMatter = (EditText) findViewById(R.id.et_dry_matter);
         this.spType = (Spinner) findViewById(R.id.sp_type);
         this.etName = (EditText) findViewById(R.id.et_name);
-        this.btnSubmit= (Button) findViewById(R.id.btn_submit);
+        this.btnSubmitFodder = (Button) findViewById(R.id.btn_submit_fodder);
     }
 
     private void initData() {
@@ -62,7 +62,7 @@ public class FodderAddActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        btnSubmitFodder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // TODO 提交动作

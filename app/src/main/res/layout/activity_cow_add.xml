@@ -23,13 +23,11 @@
                 android:text="@string/variety_text"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/tv_variety"
+            <EditText
+                android:id="@+id/et_variety"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="20sp" />
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -46,13 +44,11 @@
                 android:text="@string/weight_text"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/tv_weight"
+            <EditText
+                android:id="@+id/et_weight"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="20sp" />
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -69,13 +65,11 @@
                 android:text="@string/weight_change_text"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/tv_weight_change"
+            <EditText
+                android:id="@+id/et_weight_change"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="20sp" />
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -92,13 +86,11 @@
                 android:text="@string/milk_production_text"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/tv_milk_production"
+            <EditText
+                android:id="@+id/et_milk_production"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="20sp" />
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -115,13 +107,11 @@
                 android:text="@string/milk_fat_text"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/tv_milk_fat"
+            <EditText
+                android:id="@+id/et_milk_fat"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="20sp" />
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -138,13 +128,11 @@
                 android:text="@string/milk_protein_text"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/tv_milk_protein"
+            <EditText
+                android:id="@+id/et_milk_protein"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="20sp" />
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -161,13 +149,19 @@
                 android:text="@string/lactation_weeks_text"
                 android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/tv_lactation_weeks"
+            <EditText
+                android:id="@+id/et_lactation_weeks"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="20sp" />
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
 
         </LinearLayout>
 
@@ -177,18 +171,10 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn_change_cow"
-                android:layout_width="0dp"
+                android:id="@+id/btn_submit_cow"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/change_text" />
-
-            <Button
-                android:id="@+id/btn_delete_cow"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/delete_text" />
+                android:text="@string/submit_text" />
 
         </LinearLayout>
 

@@ -1,4 +1,4 @@
-package com.example.fx.cows_feeding_config.activity;
+package com.example.fx.cows_feeding_config.activity.fodder;
 
 import android.content.Intent;
 import android.os.Bundle;
