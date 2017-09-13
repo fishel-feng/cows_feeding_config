@@ -1,13 +1,18 @@
 package com.example.fx.cows_feeding_config.activity.cow;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.fx.cows_feeding_config.R;
 import com.example.fx.cows_feeding_config.entity.Cow;
+
+import org.litepal.crud.DataSupport;
 
 public class CowAddActivity extends AppCompatActivity {
 
@@ -19,6 +24,8 @@ public class CowAddActivity extends AppCompatActivity {
     private EditText etMilkProtein;
     private EditText etLactationWeeks;
     private Button btnSubmitCow;
+
+    private Cow cow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +48,7 @@ public class CowAddActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        Cow cow = getIntent().getParcelableExtra("cow");
+        cow = getIntent().getParcelableExtra("cow");
         if (cow != null) {
             etVariety.setText(String.valueOf(cow.getVariety()));
             etWeight.setText(String.valueOf(cow.getWeight()));
@@ -57,7 +64,30 @@ public class CowAddActivity extends AppCompatActivity {
         btnSubmitCow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO 提交动作
+                Cow target;
+                if (cow != null) {
+                    target = DataSupport.where("id = ?", String.valueOf(cow.getId())).find(Cow.class).get(0);
+                } else {
+                    target = new Cow();
+                }
+                if ("".equals(etVariety.getText().toString().trim())) {
+                    Toast.makeText(CowAddActivity.this, "奶牛品种不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                target.setVariety(etVariety.getText().toString());
+                target.setWeight(!"".equals(etWeight.getText().toString().trim()) ? Double.valueOf(etWeight.getText().toString()) : 0);
+                target.setWeightChange(!"".equals(etWeightChange.getText().toString().trim()) ? Double.valueOf(etWeightChange.getText().toString()) : 0);
+                target.setMilkProduction(!"".equals(etMilkProduction.getText().toString().trim()) ? Double.valueOf(etMilkProduction.getText().toString()) : 0);
+                target.setMilkFat(!"".equals(etMilkFat.getText().toString().trim()) ? Double.valueOf(etMilkFat.getText().toString()) : 0);
+                target.setMilkProtein(!"".equals(etMilkProtein.getText().toString().trim()) ? Double.valueOf(etMilkProtein.getText().toString()) : 0);
+                target.setLactationWeeks(!"".equals(etLactationWeeks.getText().toString().trim()) ? Double.valueOf(etLactationWeeks.getText().toString()) : 0);
+                target.save();
+                Intent intent = getIntent();
+                Bundle bundle = intent.getExtras();
+                bundle.putParcelable("target", target);
+                intent.putExtras(bundle);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
             }
         });
     }

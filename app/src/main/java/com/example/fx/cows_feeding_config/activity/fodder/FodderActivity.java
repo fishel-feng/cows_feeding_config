@@ -83,7 +83,7 @@ public class FodderActivity extends AppCompatActivity {
         if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
             Bundle bundle = data.getExtras();
             Fodder newFodder = bundle.getParcelable("newFodder");
-            int position = bundle.getInt("position");
+            int position = bundle.getInt("click");
             if (newFodder != null) {
                 fodderList.set(position, newFodder);
             }

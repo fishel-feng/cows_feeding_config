@@ -1,5 +1,6 @@
 package com.example.fx.cows_feeding_config.activity.cow;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,8 @@ public class CowActivity extends AppCompatActivity {
 
     private List<Cow> cowList;
 
+    private CowAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +37,7 @@ public class CowActivity extends AppCompatActivity {
 
     private void initView() {
         rvCow = (RecyclerView) findViewById(R.id.rv_cow);
-        btnAddCow= (Button) findViewById(R.id.btn_add_cow);
+        btnAddCow = (Button) findViewById(R.id.btn_add_cow);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvCow.setLayoutManager(layoutManager);
     }
@@ -44,7 +47,7 @@ public class CowActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
-        CowAdapter adapter = new CowAdapter(cowList);
+        adapter = new CowAdapter(cowList);
         rvCow.setAdapter(adapter);
         adapter.setOnItemClickListener(new CowAdapter.OnItemClickListener() {
             @Override
@@ -52,14 +55,39 @@ public class CowActivity extends AppCompatActivity {
                 Cow cow = cowList.get(position);
                 Intent intent = new Intent(CowActivity.this, CowInfoActivity.class);
                 intent.putExtra("cow", cow);
-                startActivity(intent);
+                intent.putExtra("position", position);
+                Bundle bundle = new Bundle();
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 6);
             }
         });
         btnAddCow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CowActivity.this,CowAddActivity.class));
+                Intent intent = new Intent(CowActivity.this, CowAddActivity.class);
+                Bundle bundle = new Bundle();
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 5);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 5 && resultCode == Activity.RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            cowList.add((Cow) bundle.getParcelable("target"));
+            adapter.notifyDataSetChanged();
+        }
+        if (requestCode == 6 && resultCode == Activity.RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            Cow newCow = bundle.getParcelable("newCow");
+            int position = bundle.getInt("position");
+            if (newCow != null) {
+                cowList.set(position, newCow);
+            }
+            adapter.notifyDataSetChanged();
+        }
     }
 }
