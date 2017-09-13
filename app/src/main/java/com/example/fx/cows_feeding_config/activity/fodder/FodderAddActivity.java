@@ -1,5 +1,7 @@
 package com.example.fx.cows_feeding_config.activity.fodder;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -72,7 +74,7 @@ public class FodderAddActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Fodder target;
                 if (fodder != null) {
-                    target = (Fodder) DataSupport.where("id = ?", String.valueOf(fodder.getId())).find(Fodder.class);
+                    target = DataSupport.where("id = ?", String.valueOf(fodder.getId())).find(Fodder.class).get(0);
                 } else {
                     target = new Fodder();
                 }
@@ -89,6 +91,12 @@ public class FodderAddActivity extends AppCompatActivity {
                 target.setCrudeProtein(!"".equals(etCrudeProtein.getText().toString().trim()) ? Double.valueOf(etCrudeProtein.getText().toString()) : 0);
                 target.setPrice(!"".equals(etPrice.getText().toString().trim()) ? Double.valueOf(etPrice.getText().toString()) : 0);
                 target.save();
+                Intent intent = getIntent();
+                Bundle bundle = intent.getExtras();
+                bundle.putParcelable("target",target);
+                intent.putExtras(bundle);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
             }
         });
     }

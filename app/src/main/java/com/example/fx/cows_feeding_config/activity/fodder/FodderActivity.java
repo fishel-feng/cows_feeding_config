@@ -1,5 +1,6 @@
 package com.example.fx.cows_feeding_config.activity.fodder;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,8 @@ public class FodderActivity extends AppCompatActivity {
 
     private List<Fodder> fodderList;
 
+    private FodderAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +37,7 @@ public class FodderActivity extends AppCompatActivity {
 
     private void initView() {
         rvFodder = (RecyclerView) findViewById(R.id.rv_fodder);
-        btnAddFodder= (Button) findViewById(R.id.btn_add_fodder);
+        btnAddFodder = (Button) findViewById(R.id.btn_add_fodder);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvFodder.setLayoutManager(layoutManager);
     }
@@ -44,22 +47,47 @@ public class FodderActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
-        FodderAdapter adapter = new FodderAdapter(fodderList);
+        adapter = new FodderAdapter(fodderList);
         rvFodder.setAdapter(adapter);
         adapter.setOnItemClickListener(new FodderAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Fodder fodder=fodderList.get(position);
-                Intent intent=new Intent(FodderActivity.this,FodderInfoActivity.class);
-                intent.putExtra("fodder",fodder);
-                startActivity(intent);
+                Fodder fodder = fodderList.get(position);
+                Intent intent = new Intent(FodderActivity.this, FodderInfoActivity.class);
+                intent.putExtra("fodder", fodder);
+                intent.putExtra("position", position);
+                Bundle bundle = new Bundle();
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 2);
             }
         });
         btnAddFodder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(FodderActivity.this,FodderAddActivity.class));
+                Intent intent = new Intent(FodderActivity.this, FodderAddActivity.class);
+                Bundle bundle = new Bundle();
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 0);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            fodderList.add((Fodder) bundle.getParcelable("target"));
+            adapter.notifyDataSetChanged();
+        }
+        if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            Fodder newFodder = bundle.getParcelable("newFodder");
+            int position = bundle.getInt("position");
+            if (newFodder != null) {
+                fodderList.set(position, newFodder);
+            }
+            adapter.notifyDataSetChanged();
+        }
     }
 }
