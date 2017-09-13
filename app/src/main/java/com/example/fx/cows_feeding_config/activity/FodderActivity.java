@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.fx.cows_feeding_config.R;
 import com.example.fx.cows_feeding_config.adapter.FodderAdapter;
@@ -18,6 +19,7 @@ import java.util.List;
 public class FodderActivity extends AppCompatActivity {
 
     private RecyclerView rvFodder;
+    private Button btnAddFodder;
 
     private List<Fodder> fodderList;
 
@@ -32,6 +34,7 @@ public class FodderActivity extends AppCompatActivity {
 
     private void initView() {
         rvFodder = (RecyclerView) findViewById(R.id.rv_fodder);
+        btnAddFodder= (Button) findViewById(R.id.btn_add_fodder);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvFodder.setLayoutManager(layoutManager);
     }
@@ -50,6 +53,12 @@ public class FodderActivity extends AppCompatActivity {
                 Intent intent=new Intent(FodderActivity.this,FodderInfoActivity.class);
                 intent.putExtra("fodder",fodder);
                 startActivity(intent);
+            }
+        });
+        btnAddFodder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FodderActivity.this,FodderAddActivity.class));
             }
         });
     }

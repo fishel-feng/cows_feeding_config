@@ -36,8 +36,15 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_fodder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
     </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/btn_add_fodder"
+        android:text="@string/add_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
 </LinearLayout>

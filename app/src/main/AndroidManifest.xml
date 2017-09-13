@@ -26,6 +26,9 @@
         <activity
             android:name=".activity.CowInfoActivity"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.FodderAddActivity"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

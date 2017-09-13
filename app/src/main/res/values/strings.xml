@@ -18,4 +18,6 @@
     <string name="milk_fat_text">乳脂率(%)</string>
     <string name="milk_protein_text">乳真蛋白(%)</string>
     <string name="lactation_weeks_text">泌乳周</string>
+    <string name="add_text">添加</string>
+    <string name="submit_text">确认</string>
 </resources>
