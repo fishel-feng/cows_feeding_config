@@ -108,6 +108,12 @@ public class CowInfoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         DataSupport.delete(Cow.class, cow.getId());
+                        Intent intent=getIntent();
+                        intent.putExtra("del",position);
+                        Bundle bundle = new Bundle();
+                        intent.putExtras(bundle);
+                        setResult(RESULT_CANCELED, intent);
+                        finish();
                     }
                 });
                 builder.setNegativeButton("取消", null);

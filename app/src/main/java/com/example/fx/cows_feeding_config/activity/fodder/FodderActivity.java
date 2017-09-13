@@ -89,5 +89,9 @@ public class FodderActivity extends AppCompatActivity {
             }
             adapter.notifyDataSetChanged();
         }
+        if (requestCode == 2 && resultCode == Activity.RESULT_CANCELED) {
+            fodderList.remove(data.getExtras().getInt("del"));
+            adapter.notifyDataSetChanged();
+        }
     }
 }

@@ -83,10 +83,14 @@ public class CowActivity extends AppCompatActivity {
         if (requestCode == 6 && resultCode == Activity.RESULT_OK) {
             Bundle bundle = data.getExtras();
             Cow newCow = bundle.getParcelable("newCow");
-            int position = bundle.getInt("position");
+            int position = bundle.getInt("click");
             if (newCow != null) {
                 cowList.set(position, newCow);
             }
+            adapter.notifyDataSetChanged();
+        }
+        if (requestCode == 6 && resultCode == Activity.RESULT_CANCELED) {
+            cowList.remove(data.getExtras().getInt("del"));
             adapter.notifyDataSetChanged();
         }
     }
