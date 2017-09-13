@@ -1,7 +1,10 @@
 package com.example.fx.cows_feeding_config.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.fx.cows_feeding_config.R;
@@ -10,14 +13,18 @@ import com.example.fx.cows_feeding_config.entity.Fodder;
 public class FodderInfoActivity extends AppCompatActivity {
 
 
-    private android.widget.TextView tvName;
-    private android.widget.TextView tvType;
-    private android.widget.TextView tvDryMatter;
-    private android.widget.TextView tvCalcium;
-    private android.widget.TextView tvPhosphorus;
-    private android.widget.TextView tvEnergy;
-    private android.widget.TextView tvCrudeProtein;
-    private android.widget.TextView tvPrice;
+    private TextView tvName;
+    private TextView tvType;
+    private TextView tvDryMatter;
+    private TextView tvCalcium;
+    private TextView tvPhosphorus;
+    private TextView tvEnergy;
+    private TextView tvCrudeProtein;
+    private TextView tvPrice;
+    private Button btnChange;
+    private Button btnDelete;
+
+    private Fodder fodder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +44,12 @@ public class FodderInfoActivity extends AppCompatActivity {
         this.tvDryMatter = (TextView) findViewById(R.id.tv_dry_matter);
         this.tvType = (TextView) findViewById(R.id.tv_type);
         this.tvName = (TextView) findViewById(R.id.tv_name);
+        this.btnChange = (Button) findViewById(R.id.btn_change);
+        this.btnDelete = (Button) findViewById(R.id.btn_delete);
     }
 
     private void initData() {
-        Fodder fodder = getIntent().getParcelableExtra("fodder");
+        fodder = getIntent().getParcelableExtra("fodder");
         if (fodder != null) {
             tvName.setText(fodder.getName());
             tvType.setText(fodder.getType() == 1 ? "粗饲料" : "精饲料");
@@ -54,6 +63,19 @@ public class FodderInfoActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
-
+        btnChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FodderInfoActivity.this, FodderAddActivity.class);
+                intent.putExtra("fodder", fodder);
+                startActivity(intent);
+            }
+        });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO 删除事件
+            }
+        });
     }
 }

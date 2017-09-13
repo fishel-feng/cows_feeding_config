@@ -20,4 +20,6 @@
     <string name="lactation_weeks_text">泌乳周</string>
     <string name="add_text">添加</string>
     <string name="submit_text">确认</string>
+    <string name="change_text">修改</string>
+    <string name="delete_text">删除</string>
 </resources>
