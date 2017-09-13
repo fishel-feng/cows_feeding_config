@@ -6,9 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.fx.cows_feeding_config.R;
 import com.example.fx.cows_feeding_config.entity.Fodder;
+
+import org.litepal.crud.DataSupport;
 
 /**
  * Created by fx on 2017/9/13.
@@ -25,6 +28,8 @@ public class FodderAddActivity extends AppCompatActivity {
     private EditText etCrudeProtein;
     private EditText etPrice;
     private Button btnSubmitFodder;
+
+    private Fodder fodder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +53,7 @@ public class FodderAddActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        Fodder fodder = getIntent().getParcelableExtra("fodder");
+        fodder = getIntent().getParcelableExtra("fodder");
         if (fodder != null) {
             etName.setText(fodder.getName());
             spType.setSelection(fodder.getType() - 1);
@@ -65,7 +70,25 @@ public class FodderAddActivity extends AppCompatActivity {
         btnSubmitFodder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO 提交动作
+                Fodder target;
+                if (fodder != null) {
+                    target = (Fodder) DataSupport.where("id = ?", String.valueOf(fodder.getId())).find(Fodder.class);
+                } else {
+                    target = new Fodder();
+                }
+                if ("".equals(etName.getText().toString().trim())) {
+                    Toast.makeText(FodderAddActivity.this, "饲料名称不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                target.setName(etName.getText().toString());
+                target.setType(spType.getSelectedItemPosition() + 1);
+                target.setDryMatter(!"".equals(etDryMatter.getText().toString().trim()) ? Double.valueOf(etDryMatter.getText().toString()) : 0);
+                target.setCalcium(!"".equals(etCalcium.getText().toString().trim()) ? Double.valueOf(etCalcium.getText().toString()) : 0);
+                target.setPhosphorus(!"".equals(etPhosphorus.getText().toString().trim()) ? Double.valueOf(etPhosphorus.getText().toString()) : 0);
+                target.setEnergy(!"".equals(etEnergy.getText().toString().trim()) ? Double.valueOf(etEnergy.getText().toString()) : 0);
+                target.setCrudeProtein(!"".equals(etCrudeProtein.getText().toString().trim()) ? Double.valueOf(etCrudeProtein.getText().toString()) : 0);
+                target.setPrice(!"".equals(etPrice.getText().toString().trim()) ? Double.valueOf(etPrice.getText().toString()) : 0);
+                target.save();
             }
         });
     }
