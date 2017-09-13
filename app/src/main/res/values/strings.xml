@@ -22,5 +22,6 @@
     <string name="submit_text">确认</string>
     <string name="change_text">修改</string>
     <string name="delete_text">删除</string>
-    <string name="select_cow_text">请选择奶牛营养指标</string>
+    <string name="select_cow_text">点击选择奶牛营养指标</string>
+    <string name="select_fodder_text">点击设置饲料</string>
 </resources>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.fx.cows_feeding_config.activity.optimize.OptimizeActivity">
 
     <Button
@@ -12,5 +12,26 @@
         android:layout_height="50dp"
         android:text="@string/select_cow_text"
         android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_select_fodder"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/select_fodder_text"
+        android:textSize="18sp" />
+
+    <ListView
+        android:id="@+id/lv_select_fodder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+    </LinearLayout>
 
 </LinearLayout>
