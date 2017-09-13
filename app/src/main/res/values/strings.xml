@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">奶牛饲料配置系统</string>
-    <string name="fodder_text">奶牛饲料养分数据</string>
-    <string name="cow_text">奶牛营养需求数据</string>
+    <string name="fodder_text">奶牛饲料养分</string>
+    <string name="cow_text">奶牛营养指标</string>
     <string name="optimize_text">奶牛饲料优化</string>
     <string name="name_text">饲料名称</string>
     <string name="type_text">饲料类型</string>
@@ -22,4 +22,5 @@
     <string name="submit_text">确认</string>
     <string name="change_text">修改</string>
     <string name="delete_text">删除</string>
+    <string name="select_cow_text">请选择奶牛营养指标</string>
 </resources>
