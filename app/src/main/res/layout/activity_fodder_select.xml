@@ -15,4 +15,10 @@
 
     </android.support.v7.widget.RecyclerView>
 
+    <Button
+        android:text="@string/submit_text"
+        android:id="@+id/btn_submit_check"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
 </LinearLayout>

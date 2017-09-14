@@ -83,8 +83,8 @@ public class FodderListAdapter extends RecyclerView.Adapter<FodderListAdapter.Vi
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     fodderInfoList.add(fodderList.get(position));
-                    Log.d("111", "onCheckedChanged: "+fodderInfoList.size());
-                    Log.d("222", "onCheckedChanged: "+fodderInfoList.size());
+                    Log.d("111", "onCheckedChanged: " + fodderInfoList.size());
+                    Log.d("222", "onCheckedChanged: " + fodderInfoList.size());
                 } else {
                     if (fodderInfoList.contains(fodderList.get(position))) {
                         fodderInfoList.remove(fodderList.get(position));
@@ -98,5 +98,9 @@ public class FodderListAdapter extends RecyclerView.Adapter<FodderListAdapter.Vi
     @Override
     public int getItemCount() {
         return fodderList.size();
+    }
+
+    public List<Fodder> getFodderInfoList() {
+        return fodderInfoList;
     }
 }
