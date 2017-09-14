@@ -1,6 +1,7 @@
 package com.example.fx.cows_feeding_config.activity.optimize;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -73,7 +74,8 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                 }).create().show();
                 break;
             case R.id.btn_select_fodder:
-
+//                TODO
+                startActivity(new Intent(OptimizeActivity.this,FodderSelectActivity.class));
                 break;
         }
     }

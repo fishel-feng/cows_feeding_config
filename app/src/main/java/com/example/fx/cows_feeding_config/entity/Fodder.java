@@ -30,6 +30,14 @@ public class Fodder extends DataSupport implements Parcelable {
 
     private double price;
 
+    protected boolean variable;
+
+    protected double dosage;
+
+    protected double maxDosage;
+
+    protected double minDosage;
+
     public int getId() {
         return id;
     }
@@ -102,6 +110,38 @@ public class Fodder extends DataSupport implements Parcelable {
         this.price = price;
     }
 
+    public boolean isVariable() {
+        return variable;
+    }
+
+    public void setVariable(boolean variable) {
+        this.variable = variable;
+    }
+
+    public double getDosage() {
+        return dosage;
+    }
+
+    public void setDosage(double dosage) {
+        this.dosage = dosage;
+    }
+
+    public double getMaxDosage() {
+        return maxDosage;
+    }
+
+    public void setMaxDosage(double maxDosage) {
+        this.maxDosage = maxDosage;
+    }
+
+    public double getMinDosage() {
+        return minDosage;
+    }
+
+    public void setMinDosage(double minDosage) {
+        this.minDosage = minDosage;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -118,6 +158,10 @@ public class Fodder extends DataSupport implements Parcelable {
         dest.writeDouble(this.energy);
         dest.writeDouble(this.crudeProtein);
         dest.writeDouble(this.price);
+        dest.writeByte(this.variable ? (byte) 1 : (byte) 0);
+        dest.writeDouble(this.dosage);
+        dest.writeDouble(this.maxDosage);
+        dest.writeDouble(this.minDosage);
     }
 
     public Fodder() {
@@ -154,6 +198,10 @@ public class Fodder extends DataSupport implements Parcelable {
         this.energy = in.readDouble();
         this.crudeProtein = in.readDouble();
         this.price = in.readDouble();
+        this.variable = in.readByte() != 0;
+        this.dosage = in.readDouble();
+        this.maxDosage = in.readDouble();
+        this.minDosage = in.readDouble();
     }
 
     public static final Creator<Fodder> CREATOR = new Creator<Fodder>() {
