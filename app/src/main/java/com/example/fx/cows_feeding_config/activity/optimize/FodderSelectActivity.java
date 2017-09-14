@@ -1,6 +1,9 @@
 package com.example.fx.cows_feeding_config.activity.optimize;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +16,7 @@ import com.example.fx.cows_feeding_config.entity.Fodder;
 
 import org.litepal.crud.DataSupport;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FodderSelectActivity extends AppCompatActivity {
@@ -55,7 +59,12 @@ public class FodderSelectActivity extends AppCompatActivity {
         btnSubmitCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: 2017/9/14 getFooderinfolist 销毁
+                Intent intent = getIntent();
+                Bundle bundle = intent.getExtras();
+                bundle.putParcelableArrayList("fodderInfoList", (ArrayList<? extends Parcelable>) adapter.getFodderInfoList());
+                intent.putExtras(bundle);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
             }
         });
     }

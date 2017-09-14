@@ -1,5 +1,6 @@
 package com.example.fx.cows_feeding_config.activity.optimize;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,6 +52,7 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
     private void initData() {
         cowList = DataSupport.findAll(Cow.class);
         fodderList = DataSupport.findAll(Fodder.class);
+//   TODO     lvSelectFodder.setAdapter();
     }
 
     private void initEvent() {
@@ -74,9 +76,22 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                 }).create().show();
                 break;
             case R.id.btn_select_fodder:
-//                TODO
-                startActivity(new Intent(OptimizeActivity.this,FodderSelectActivity.class));
+                Intent intent = new Intent(OptimizeActivity.this, FodderSelectActivity.class);
+                Bundle bundle = new Bundle();
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 8);
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 8 && resultCode == Activity.RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            fodderList=bundle.getParcelableArrayList("fodderInfoList");
+            btnSelectFodder.setText("请设置饲料用量参数，单位kg");
+//            TODO notify
         }
     }
 }
