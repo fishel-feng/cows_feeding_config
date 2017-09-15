@@ -25,6 +25,10 @@ public class FodderInfoAdapter extends ArrayAdapter<Fodder> {
 
     private int resourceId;
 
+    private Fodder fodder;
+
+    private ViewHolder viewHolder;
+
     public FodderInfoAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Fodder> objects) {
         super(context, resource, objects);
         resourceId = resource;
@@ -33,9 +37,8 @@ public class FodderInfoAdapter extends ArrayAdapter<Fodder> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Fodder fodder = getItem(position);
+        fodder = getItem(position);
         View view;
-        ViewHolder viewHolder;
         if (convertView == null) {
             view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
             viewHolder = new ViewHolder();
@@ -55,6 +58,14 @@ public class FodderInfoAdapter extends ArrayAdapter<Fodder> {
             viewHolder.etPrice.setText(String.valueOf(fodder.getPrice()));
         }
         return view;
+    }
+
+    public void setContent() {
+        fodder.setPrice(Double.valueOf(String.valueOf(viewHolder.etPrice.getText())));
+        fodder.setDosage(Double.valueOf(String.valueOf(viewHolder.etDosage.getText())));
+        fodder.setMaxDosage(Double.valueOf(String.valueOf(viewHolder.etMax.getText())));
+        fodder.setMinDosage(Double.valueOf(String.valueOf(viewHolder.etMin.getText())));
+        fodder.setVariable(viewHolder.spVariable.getSelectedItemPosition() == 1);
     }
 
     class ViewHolder {

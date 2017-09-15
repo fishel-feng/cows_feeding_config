@@ -4,4 +4,8 @@
         <item>粗饲料</item>
         <item>精饲料</item>
     </string-array>
+    <string-array name="variable_array">
+        <item>固定</item>
+        <item>可变</item>
+    </string-array>
 </resources>

@@ -31,6 +31,8 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
     private Button btnSelectCow;
     private Button btnSelectFodder;
     private ListView lvSelectFodder;
+    private Button btn1;
+    private Button btn2;
 
     private List<Cow> cowList;
     private List<Fodder> fodderInfoList = new ArrayList<>();
@@ -58,6 +60,8 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
         this.btnSelectCow = (Button) findViewById(R.id.btn_select_cow);
         this.btnSelectFodder = (Button) findViewById(R.id.btn_select_fodder);
         this.lvSelectFodder = (ListView) findViewById(R.id.lv_select_fodder);
+        this.btn1 = (Button) findViewById(R.id.btn_1);
+        this.btn2 = (Button) findViewById(R.id.btn_2);
     }
 
     private void initData() {
@@ -69,6 +73,8 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
     private void initEvent() {
         btnSelectCow.setOnClickListener(this);
         btnSelectFodder.setOnClickListener(this);
+        btn1.setOnClickListener(this);
+        btn2.setOnClickListener(this);
     }
 
     @Override
@@ -92,6 +98,13 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                 intent.putExtras(bundle);
                 intent.putParcelableArrayListExtra("infoList", (ArrayList<? extends Parcelable>) fodderInfoList);
                 startActivityForResult(intent, 8);
+                break;
+            case R.id.btn_1:
+                adapter.setContent();
+                break;
+            case R.id.btn_2:
+                // TODO
+                adapter.setContent();
                 break;
         }
     }
