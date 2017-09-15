@@ -45,11 +45,32 @@ public class FodderSelectActivity extends AppCompatActivity {
 
     private void initData() {
         fodderList = DataSupport.findAll(Fodder.class);
+        adapter = new FodderListAdapter(fodderList);
+        rvCheck.setAdapter(adapter);
+        List<Fodder> fodderInfoList = getIntent().getParcelableArrayListExtra("infoList");
+        List<Fodder> fodderRemoveList = adapter.getFodderRemoveList();
+        if (fodderInfoList != null) {
+            for (Fodder fodder : fodderList) {
+                for (Fodder fodderInfo : fodderInfoList) {
+                    if (fodder.getId() == fodderInfo.getId()) {
+                        fodder.setChecked(true);
+                    }
+                }
+            }
+        }
+        if (fodderRemoveList != null) {
+            for (Fodder fodder : fodderList) {
+                for (Fodder fodderRemove : fodderRemoveList) {
+                    if (fodder.getId() == fodderRemove.getId()) {
+                        fodder.setChecked(true);
+                    }
+                }
+            }
+        }
+        // TODO 取消选中
     }
 
     private void initEvent() {
-        adapter = new FodderListAdapter(fodderList);
-        rvCheck.setAdapter(adapter);
         adapter.setOnItemClickListener(new FodderListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -62,6 +83,9 @@ public class FodderSelectActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 Bundle bundle = intent.getExtras();
                 bundle.putParcelableArrayList("fodderInfoList", (ArrayList<? extends Parcelable>) adapter.getFodderInfoList());
+                bundle.putParcelableArrayList("fodderRemoveList", (ArrayList<? extends Parcelable>) adapter.getFodderRemoveList());
+                bundle.putInt("coarse", adapter.getCoarse());
+                bundle.putInt("concentrate", adapter.getConcentrate());
                 intent.putExtras(bundle);
                 setResult(Activity.RESULT_OK, intent);
                 finish();

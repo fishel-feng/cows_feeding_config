@@ -24,4 +24,10 @@
     <string name="delete_text">删除</string>
     <string name="select_cow_text">点击选择奶牛营养指标</string>
     <string name="select_fodder_text">点击设置饲料</string>
+    <string name="select_name_text">饲料\n名称</string>
+    <string name="select_price_text">饲料\n价格</string>
+    <string name="select_dosage_text">饲料\n用量</string>
+    <string name="select_max_text">用量\n上限</string>
+    <string name="select_min_text">用量\n下限</string>
+    <string name="select_variable_text">是否\n可变</string>
 </resources>

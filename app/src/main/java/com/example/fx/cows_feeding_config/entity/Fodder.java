@@ -38,6 +38,8 @@ public class Fodder extends DataSupport implements Parcelable {
 
     protected double minDosage;
 
+    protected boolean isChecked;
+
     public int getId() {
         return id;
     }
@@ -142,26 +144,13 @@ public class Fodder extends DataSupport implements Parcelable {
         this.minDosage = minDosage;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+
+    public boolean isChecked() {
+        return isChecked;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeString(this.name);
-        dest.writeInt(this.type);
-        dest.writeDouble(this.dryMatter);
-        dest.writeDouble(this.calcium);
-        dest.writeDouble(this.phosphorus);
-        dest.writeDouble(this.energy);
-        dest.writeDouble(this.crudeProtein);
-        dest.writeDouble(this.price);
-        dest.writeByte(this.variable ? (byte) 1 : (byte) 0);
-        dest.writeDouble(this.dosage);
-        dest.writeDouble(this.maxDosage);
-        dest.writeDouble(this.minDosage);
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 
     public Fodder() {
@@ -188,6 +177,30 @@ public class Fodder extends DataSupport implements Parcelable {
         this.price = price;
     }
 
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.name);
+        dest.writeInt(this.type);
+        dest.writeDouble(this.dryMatter);
+        dest.writeDouble(this.calcium);
+        dest.writeDouble(this.phosphorus);
+        dest.writeDouble(this.energy);
+        dest.writeDouble(this.crudeProtein);
+        dest.writeDouble(this.price);
+        dest.writeByte(this.variable ? (byte) 1 : (byte) 0);
+        dest.writeDouble(this.dosage);
+        dest.writeDouble(this.maxDosage);
+        dest.writeDouble(this.minDosage);
+        dest.writeByte(this.isChecked ? (byte) 1 : (byte) 0);
+    }
+
     protected Fodder(Parcel in) {
         this.id = in.readInt();
         this.name = in.readString();
@@ -202,6 +215,7 @@ public class Fodder extends DataSupport implements Parcelable {
         this.dosage = in.readDouble();
         this.maxDosage = in.readDouble();
         this.minDosage = in.readDouble();
+        this.isChecked = in.readByte() != 0;
     }
 
     public static final Creator<Fodder> CREATOR = new Creator<Fodder>() {

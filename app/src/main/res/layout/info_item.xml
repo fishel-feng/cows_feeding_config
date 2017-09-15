@@ -4,33 +4,38 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_fodder"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_weight="1"
+        android:layout_weight="1.02"
         android:gravity="center" />
 
     <EditText
+        android:id="@+id/et_price"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="1" />
 
     <EditText
+        android:id="@+id/et_dosage"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="1" />
 
     <EditText
+        android:id="@+id/et_max"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="1" />
 
     <EditText
+        android:id="@+id/et_min"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="1" />
 
     <Spinner
+        android:id="@+id/sp_variable"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="1" />

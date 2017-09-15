@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,11 +13,13 @@ import android.widget.ListView;
 
 import com.example.fx.cows_feeding_config.R;
 import com.example.fx.cows_feeding_config.adapter.CowListAdapter;
+import com.example.fx.cows_feeding_config.adapter.FodderInfoAdapter;
 import com.example.fx.cows_feeding_config.entity.Cow;
 import com.example.fx.cows_feeding_config.entity.Fodder;
 
 import org.litepal.crud.DataSupport;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,7 +33,12 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
     private ListView lvSelectFodder;
 
     private List<Cow> cowList;
-    private List<Fodder> fodderList;
+    private List<Fodder> fodderInfoList = new ArrayList<>();
+
+    private FodderInfoAdapter adapter;
+
+    private int coarse;
+    private int concentrate;
 
     private Cow cow;
 
@@ -51,8 +59,8 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
 
     private void initData() {
         cowList = DataSupport.findAll(Cow.class);
-        fodderList = DataSupport.findAll(Fodder.class);
-//   TODO     lvSelectFodder.setAdapter();
+        adapter = new FodderInfoAdapter(OptimizeActivity.this, R.layout.info_item, fodderInfoList);
+        lvSelectFodder.setAdapter(adapter);
     }
 
     private void initEvent() {
@@ -79,6 +87,7 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                 Intent intent = new Intent(OptimizeActivity.this, FodderSelectActivity.class);
                 Bundle bundle = new Bundle();
                 intent.putExtras(bundle);
+                intent.putParcelableArrayListExtra("infoList", (ArrayList<? extends Parcelable>) fodderInfoList);
                 startActivityForResult(intent, 8);
                 break;
         }
@@ -89,9 +98,31 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 8 && resultCode == Activity.RESULT_OK) {
             Bundle bundle = data.getExtras();
-            fodderList=bundle.getParcelableArrayList("fodderInfoList");
-            btnSelectFodder.setText("请设置饲料用量参数，单位kg");
-//            TODO notify
+            ArrayList<Fodder> selectList = bundle.getParcelableArrayList("fodderInfoList");
+            ArrayList<Fodder> fodderRemoveList = bundle.getParcelableArrayList("fodderRemoveList");
+            coarse = bundle.getInt("coarse");
+            concentrate = bundle.getInt("concentrate");
+            if (selectList != null) {
+                for (Fodder fodder : selectList) {
+                    fodderInfoList.add(fodder);
+                }
+            }
+            List<Fodder> temp=new ArrayList<>();
+            if (fodderRemoveList != null) {
+                for (Fodder fodder : fodderRemoveList) {
+                    for (Fodder fodderInfo : fodderInfoList) {
+                        if (fodder.getId() == fodderInfo.getId()) {
+                            temp.add(fodderInfo);
+                        }
+                    }
+                }
+            }
+            for (Fodder t : temp) {
+                fodderInfoList.remove(t);
+            }
+            btnSelectFodder.setText("选择粗饲料" + coarse + "种,精饲料" + concentrate + "种，单位kg");
+            adapter.notifyDataSetChanged();
         }
     }
 }
+

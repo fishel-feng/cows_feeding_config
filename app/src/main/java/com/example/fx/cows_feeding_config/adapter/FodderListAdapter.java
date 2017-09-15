@@ -1,7 +1,6 @@
 package com.example.fx.cows_feeding_config.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +23,15 @@ public class FodderListAdapter extends RecyclerView.Adapter<FodderListAdapter.Vi
     private List<Fodder> fodderList;
 
     private List<Fodder> fodderInfoList = new ArrayList<>();
+    private List<Fodder> fodderRemoveList = new ArrayList<>();
 
     private OnItemClickListener onItemClickListener;
+
+    //粗饲料
+    private int coarse;
+
+    //精饲料
+    private int concentrate;
 
     @Override
     public void onClick(View view) {
@@ -78,16 +84,42 @@ public class FodderListAdapter extends RecyclerView.Adapter<FodderListAdapter.Vi
         holder.tvFodderName.setText(fodder.getName());
         holder.tvFodderType.setText(fodder.getType() == 1 ? "粗饲料" : "精饲料");
         holder.tvFodderPrice.setText(fodder.getPrice() != 0 ? String.valueOf(fodder.getPrice()) : "暂无价格");
+        if (fodderList.get(position).isChecked()) {
+            holder.ckFodder.setChecked(true);
+        }
+        if (!fodderList.get(position).isChecked()) {
+            holder.ckFodder.setChecked(false);
+        }
+        final Fodder[] click = new Fodder[1];
         holder.ckFodder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                click[0] = fodderList.get(position);
                 if (b) {
-                    fodderInfoList.add(fodderList.get(position));
-                    Log.d("111", "onCheckedChanged: " + fodderInfoList.size());
-                    Log.d("222", "onCheckedChanged: " + fodderInfoList.size());
-                } else {
-                    if (fodderInfoList.contains(fodderList.get(position))) {
-                        fodderInfoList.remove(fodderList.get(position));
+                    fodderInfoList.add(click[0]);
+                    if (fodderRemoveList.contains(click[0])) {
+                        fodderRemoveList.remove(click[0]);
+                    }
+                    if (click[0].getType() == 1) {
+                        coarse++;
+                    } else if (click[0].getType() == 2) {
+                        concentrate++;
+                    }
+                }
+            }
+        });
+        holder.ckFodder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!((CheckBox) view).isChecked()) {
+                    if (fodderInfoList.contains(click[0])) {
+                        fodderInfoList.remove(click[0]);
+                    }
+                    fodderRemoveList.add(click[0]);
+                    if (click[0].getType() == 1) {
+                        coarse--;
+                    } else if (click[0].getType() == 2) {
+                        concentrate--;
                     }
                 }
             }
@@ -102,5 +134,17 @@ public class FodderListAdapter extends RecyclerView.Adapter<FodderListAdapter.Vi
 
     public List<Fodder> getFodderInfoList() {
         return fodderInfoList;
+    }
+
+    public List<Fodder> getFodderRemoveList() {
+        return fodderRemoveList;
+    }
+
+    public int getCoarse() {
+        return coarse;
+    }
+
+    public int getConcentrate() {
+        return concentrate;
     }
 }
