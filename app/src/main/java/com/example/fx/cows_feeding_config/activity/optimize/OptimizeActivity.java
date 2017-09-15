@@ -37,10 +37,13 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
 
     private FodderInfoAdapter adapter;
 
-    private int coarse;
-    private int concentrate;
-
     private Cow cow;
+
+    //粗饲料
+    private int coarse;
+
+    //精饲料
+    private int concentrate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,14 +103,12 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
             Bundle bundle = data.getExtras();
             ArrayList<Fodder> selectList = bundle.getParcelableArrayList("fodderInfoList");
             ArrayList<Fodder> fodderRemoveList = bundle.getParcelableArrayList("fodderRemoveList");
-            coarse = bundle.getInt("coarse");
-            concentrate = bundle.getInt("concentrate");
             if (selectList != null) {
                 for (Fodder fodder : selectList) {
                     fodderInfoList.add(fodder);
                 }
             }
-            List<Fodder> temp=new ArrayList<>();
+            List<Fodder> temp = new ArrayList<>();
             if (fodderRemoveList != null) {
                 for (Fodder fodder : fodderRemoveList) {
                     for (Fodder fodderInfo : fodderInfoList) {
@@ -120,7 +121,18 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
             for (Fodder t : temp) {
                 fodderInfoList.remove(t);
             }
-            btnSelectFodder.setText("选择粗饲料" + coarse + "种,精饲料" + concentrate + "种，单位kg");
+            int coarseNum = 0;
+            int concentrateNum = 0;
+            for (Fodder fodder : fodderInfoList) {
+                if (fodder.getType() == 1) {
+                    coarseNum++;
+                } else if (fodder.getType() == 2) {
+                    concentrateNum++;
+                }
+            }
+            coarse = coarseNum;
+            concentrate = concentrateNum;
+            btnSelectFodder.setText("选择粗饲料" + coarseNum + "种,精饲料" + concentrateNum + "种，单位kg");
             adapter.notifyDataSetChanged();
         }
     }

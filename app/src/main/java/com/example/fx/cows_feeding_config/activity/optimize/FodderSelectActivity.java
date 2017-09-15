@@ -67,7 +67,6 @@ public class FodderSelectActivity extends AppCompatActivity {
                 }
             }
         }
-        // TODO 取消选中
     }
 
     private void initEvent() {
@@ -84,8 +83,6 @@ public class FodderSelectActivity extends AppCompatActivity {
                 Bundle bundle = intent.getExtras();
                 bundle.putParcelableArrayList("fodderInfoList", (ArrayList<? extends Parcelable>) adapter.getFodderInfoList());
                 bundle.putParcelableArrayList("fodderRemoveList", (ArrayList<? extends Parcelable>) adapter.getFodderRemoveList());
-                bundle.putInt("coarse", adapter.getCoarse());
-                bundle.putInt("concentrate", adapter.getConcentrate());
                 intent.putExtras(bundle);
                 setResult(Activity.RESULT_OK, intent);
                 finish();

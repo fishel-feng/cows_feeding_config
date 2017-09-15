@@ -27,12 +27,6 @@ public class FodderListAdapter extends RecyclerView.Adapter<FodderListAdapter.Vi
 
     private OnItemClickListener onItemClickListener;
 
-    //粗饲料
-    private int coarse;
-
-    //精饲料
-    private int concentrate;
-
     @Override
     public void onClick(View view) {
         if (onItemClickListener != null) {
@@ -100,11 +94,6 @@ public class FodderListAdapter extends RecyclerView.Adapter<FodderListAdapter.Vi
                     if (fodderRemoveList.contains(click[0])) {
                         fodderRemoveList.remove(click[0]);
                     }
-                    if (click[0].getType() == 1) {
-                        coarse++;
-                    } else if (click[0].getType() == 2) {
-                        concentrate++;
-                    }
                 }
             }
         });
@@ -116,11 +105,6 @@ public class FodderListAdapter extends RecyclerView.Adapter<FodderListAdapter.Vi
                         fodderInfoList.remove(click[0]);
                     }
                     fodderRemoveList.add(click[0]);
-                    if (click[0].getType() == 1) {
-                        coarse--;
-                    } else if (click[0].getType() == 2) {
-                        concentrate--;
-                    }
                 }
             }
         });
@@ -140,11 +124,4 @@ public class FodderListAdapter extends RecyclerView.Adapter<FodderListAdapter.Vi
         return fodderRemoveList;
     }
 
-    public int getCoarse() {
-        return coarse;
-    }
-
-    public int getConcentrate() {
-        return concentrate;
-    }
 }
