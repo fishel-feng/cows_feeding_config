@@ -43,28 +43,28 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/select_dosage_text"/>
+            android:text="@string/select_dosage_text" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/select_max_text"/>
+            android:text="@string/select_max_text" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/select_min_text"/>
+            android:text="@string/select_min_text" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/select_variable_text"/>
+            android:text="@string/select_variable_text" />
 
     </LinearLayout>
 
@@ -79,6 +79,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
     </LinearLayout>
 

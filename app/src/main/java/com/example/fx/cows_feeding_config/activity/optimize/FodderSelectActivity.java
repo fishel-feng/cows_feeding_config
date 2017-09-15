@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.fx.cows_feeding_config.R;
 import com.example.fx.cows_feeding_config.adapter.FodderListAdapter;
@@ -73,7 +75,29 @@ public class FodderSelectActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new FodderListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                // TODO: 2017/9/14 alertdialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(FodderSelectActivity.this);
+                View v = View.inflate(FodderSelectActivity.this, R.layout.info_dialog, null);
+                builder.setView(v);
+                builder.setCancelable(true);
+                TextView tvPrice = v.findViewById(R.id.tv_dialog_price);
+                TextView tvCrudeProtein = v.findViewById(R.id.tv_dialog_crude_protein);
+                TextView tvEnergy = v.findViewById(R.id.tv_dialog_energy);
+                TextView tvPhosphorus = v.findViewById(R.id.tv_dialog_phosphorus);
+                TextView tvCalcium = v.findViewById(R.id.tv_dialog_calcium);
+                TextView tvDryMatter = v.findViewById(R.id.tv_dialog_dry_matter);
+                TextView tvType = v.findViewById(R.id.tv_dialog_type);
+                TextView tvName = v.findViewById(R.id.tv_dialog_name);
+                Fodder fodder = fodderList.get(position);
+                tvName.setText(fodder.getName());
+                tvType.setText(fodder.getType() == 1 ? "粗饲料" : "精饲料");
+                tvDryMatter.setText(String.valueOf(fodder.getDryMatter()));
+                tvCalcium.setText(String.valueOf(fodder.getCalcium()));
+                tvPhosphorus.setText(String.valueOf(fodder.getPhosphorus()));
+                tvEnergy.setText(String.valueOf(fodder.getEnergy()));
+                tvCrudeProtein.setText(String.valueOf(fodder.getCrudeProtein()));
+                tvPrice.setText(fodder.getPrice() != 0 ? String.valueOf(fodder.getPrice()) : "暂无价格");
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
         btnSubmitCheck.setOnClickListener(new View.OnClickListener() {
