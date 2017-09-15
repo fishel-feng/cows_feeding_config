@@ -61,10 +61,10 @@ public class FodderInfoAdapter extends ArrayAdapter<Fodder> {
     }
 
     public void setContent() {
-        fodder.setPrice(Double.valueOf(String.valueOf(viewHolder.etPrice.getText())));
-        fodder.setDosage(Double.valueOf(String.valueOf(viewHolder.etDosage.getText())));
-        fodder.setMaxDosage(Double.valueOf(String.valueOf(viewHolder.etMax.getText())));
-        fodder.setMinDosage(Double.valueOf(String.valueOf(viewHolder.etMin.getText())));
+        fodder.setPrice(viewHolder.etPrice.getText() == null ? Double.valueOf(String.valueOf(viewHolder.etPrice.getText())) : 0);
+        fodder.setDosage(viewHolder.etDosage.getText() == null ? Double.valueOf(String.valueOf(viewHolder.etDosage.getText())) : 0);
+        fodder.setMaxDosage(viewHolder.etMax.getText() == null ? Double.valueOf(String.valueOf(viewHolder.etMax.getText())) : 0);
+        fodder.setMinDosage(viewHolder.etMin.getText() == null ? Double.valueOf(String.valueOf(viewHolder.etMin.getText())) : 0);
         fodder.setVariable(viewHolder.spVariable.getSelectedItemPosition() == 1);
     }
 

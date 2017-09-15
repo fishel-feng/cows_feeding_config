@@ -5,28 +5,45 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.fx.cows_feeding_config.R;
 import com.example.fx.cows_feeding_config.adapter.CowListAdapter;
 import com.example.fx.cows_feeding_config.adapter.FodderInfoAdapter;
 import com.example.fx.cows_feeding_config.entity.Cow;
 import com.example.fx.cows_feeding_config.entity.Fodder;
+import com.example.fx.cows_feeding_config.util.ObjectToJsonUtil;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.litepal.crud.DataSupport;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * Created by fx on 2017/9/13.
  */
 
 public class OptimizeActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    private static final String LP_URL = "http://127.0.0.1:80";
 
     private Button btnSelectCow;
     private Button btnSelectFodder;
@@ -100,7 +117,44 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                 startActivityForResult(intent, 8);
                 break;
             case R.id.btn_1:
+                if (cow == null) {
+                    Toast.makeText(this, "请选择奶牛营养指标", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (fodderInfoList == null || fodderInfoList.size() == 0) {
+                    Toast.makeText(this, "请选择饲料", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 adapter.setContent();
+                OkHttpClient client = new OkHttpClient();
+                JSONObject requestObject = null;
+                try {
+                    requestObject = ObjectToJsonUtil.objectToJson(fodderInfoList, cow, coarse, concentrate);
+                } catch (JSONException e) {
+                    Toast.makeText(this, "未知错误", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+                if (requestObject != null) {
+                    RequestBody requestBody = RequestBody.create(JSON, requestObject.toString());
+                    Request request = new Request.Builder().url(LP_URL).post(requestBody).build();
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            OptimizeActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(OptimizeActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            String responseData = response.body().string();
+//                          TODO 回调
+                        }
+                    });
+                }
                 break;
             case R.id.btn_2:
                 // TODO
