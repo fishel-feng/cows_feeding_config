@@ -159,9 +159,16 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                         @Override
                         public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                             String responseData = response.body().string();
-                            Result result = new Gson().fromJson(responseData, Result.class);
+                            final Result result = new Gson().fromJson(responseData, Result.class);
                             if (Objects.equals(result.code, "success")) {
-                                // TODO 跳转更新
+                                OptimizeActivity.this.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(OptimizeActivity.this, ResultActivity.class);
+                                        intent.putExtra("result", result);
+                                        startActivity(intent);
+                                    }
+                                });
                             } else if (Objects.equals(result.code, "failed")) {
                                 // TODO 询问是否进一步处理
                             }
