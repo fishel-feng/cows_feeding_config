@@ -1,6 +1,8 @@
 package com.example.fx.cows_feeding_config.activity.optimize;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,11 +49,14 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private static final String LP_URL = "http://127.0.0.1:80";
+    private static final String FLP_URL = "http://127.0.0.1:80";
 
     private Button btnSelectCow;
     private Button btnSelectFodder;
     private ListView lvSelectFodder;
     private Button btnOptimize;
+
+    private ProgressDialog progressDialog;
 
     private List<Cow> cowList;
     private List<Fodder> fodderInfoList = new ArrayList<>();
@@ -145,9 +150,11 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                 if (requestObject != null) {
                     RequestBody requestBody = RequestBody.create(JSON, requestObject.toString());
                     Request request = new Request.Builder().url(LP_URL).post(requestBody).build();
+                    showProgressDialog(OptimizeActivity.this);
                     client.newCall(request).enqueue(new Callback() {
                         @Override
                         public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            closeProgressDialog();
                             OptimizeActivity.this.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -164,13 +171,80 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                                 OptimizeActivity.this.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+                                        closeProgressDialog();
                                         Intent intent = new Intent(OptimizeActivity.this, ResultActivity.class);
                                         intent.putExtra("result", result);
                                         startActivity(intent);
                                     }
                                 });
                             } else if (Objects.equals(result.code, "failed")) {
-                                // TODO 询问是否进一步处理
+                                OptimizeActivity.this.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        closeProgressDialog();
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(OptimizeActivity.this);
+                                        builder.setMessage("没有最优方案，是否进行调整计算");
+                                        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                OkHttpClient client = new OkHttpClient();
+                                                JSONObject requestObject = null;
+                                                try {
+                                                    requestObject = ObjectToJsonUtil.objectToJson(fodderInfoList, cow, coarse, concentrate);
+                                                } catch (JSONException e) {
+                                                    Toast.makeText(OptimizeActivity.this, "未知错误", Toast.LENGTH_SHORT).show();
+                                                    e.printStackTrace();
+                                                }
+                                                if (requestObject != null) {
+                                                    RequestBody requestBody = RequestBody.create(JSON, requestObject.toString());
+                                                    Request request = new Request.Builder().url(LP_URL).post(requestBody).build();
+                                                    showProgressDialog(OptimizeActivity.this);
+                                                    client.newCall(request).enqueue(new Callback() {
+                                                        @Override
+                                                        public void onFailure(Call call, IOException e) {
+                                                            closeProgressDialog();
+                                                            OptimizeActivity.this.runOnUiThread(new Runnable() {
+                                                                @Override
+                                                                public void run() {
+                                                                    Toast.makeText(OptimizeActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            });
+                                                        }
+
+                                                        @Override
+                                                        public void onResponse(Call call, Response response) throws IOException {
+                                                            String responseData = response.body().string();
+                                                            final Result result = new Gson().fromJson(responseData, Result.class);
+                                                            if (Objects.equals(result.code, "success")) {
+                                                                OptimizeActivity.this.runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        closeProgressDialog();
+                                                                        Intent intent = new Intent(OptimizeActivity.this, ResultActivity.class);
+                                                                        intent.putExtra("result", result);
+                                                                        startActivity(intent);
+                                                                    }
+                                                                });
+                                                            } else if (Objects.equals(result.code, "failed")) {
+                                                                OptimizeActivity.this.runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        closeProgressDialog();
+                                                                        AlertDialog.Builder builder = new AlertDialog.Builder(OptimizeActivity.this);
+                                                                        builder.setMessage("没很抱歉没有计算出结果");
+                                                                        builder.create().show();
+                                                                    }
+                                                                });
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        });
+                                        builder.setPositiveButton("否", null);
+                                        builder.create().show();
+                                    }
+                                });
                             }
                         }
                     });
@@ -217,6 +291,21 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
             concentrate = concentrateNum;
             btnSelectFodder.setText("选择粗饲料" + coarseNum + "种,精饲料" + concentrateNum + "种，单位kg");
             adapter.notifyDataSetChanged();
+        }
+    }
+
+    private void showProgressDialog(Context context) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setMessage("正在计算...");
+            progressDialog.setCancelable(false);
+        }
+        progressDialog.show();
+    }
+
+    private void closeProgressDialog() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
         }
     }
 }
