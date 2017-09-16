@@ -30,4 +30,5 @@
     <string name="select_max_text">用量\n上限</string>
     <string name="select_min_text">用量\n下限</string>
     <string name="select_variable_text">是否\n可变</string>
+    <string name="LP_text">开始计算</string>
 </resources>

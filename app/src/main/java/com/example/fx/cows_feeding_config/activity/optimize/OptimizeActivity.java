@@ -18,7 +18,9 @@ import com.example.fx.cows_feeding_config.adapter.CowListAdapter;
 import com.example.fx.cows_feeding_config.adapter.FodderInfoAdapter;
 import com.example.fx.cows_feeding_config.entity.Cow;
 import com.example.fx.cows_feeding_config.entity.Fodder;
+import com.example.fx.cows_feeding_config.gson.Result;
 import com.example.fx.cows_feeding_config.util.ObjectToJsonUtil;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +29,7 @@ import org.litepal.crud.DataSupport;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -48,8 +51,7 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
     private Button btnSelectCow;
     private Button btnSelectFodder;
     private ListView lvSelectFodder;
-    private Button btn1;
-    private Button btn2;
+    private Button btnOptimize;
 
     private List<Cow> cowList;
     private List<Fodder> fodderInfoList = new ArrayList<>();
@@ -77,8 +79,7 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
         this.btnSelectCow = (Button) findViewById(R.id.btn_select_cow);
         this.btnSelectFodder = (Button) findViewById(R.id.btn_select_fodder);
         this.lvSelectFodder = (ListView) findViewById(R.id.lv_select_fodder);
-        this.btn1 = (Button) findViewById(R.id.btn_1);
-        this.btn2 = (Button) findViewById(R.id.btn_2);
+        this.btnOptimize = (Button) findViewById(R.id.btn_LP);
     }
 
     private void initData() {
@@ -90,8 +91,7 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
     private void initEvent() {
         btnSelectCow.setOnClickListener(this);
         btnSelectFodder.setOnClickListener(this);
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
+        btnOptimize.setOnClickListener(this);
     }
 
     @Override
@@ -116,13 +116,21 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                 intent.putParcelableArrayListExtra("infoList", (ArrayList<? extends Parcelable>) fodderInfoList);
                 startActivityForResult(intent, 8);
                 break;
-            case R.id.btn_1:
+            case R.id.btn_LP:
                 if (cow == null) {
                     Toast.makeText(this, "请选择奶牛营养指标", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (fodderInfoList == null || fodderInfoList.size() == 0) {
                     Toast.makeText(this, "请选择饲料", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (coarse == 0) {
+                    Toast.makeText(this, "请选择至少一种粗饲料", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (concentrate == 0) {
+                    Toast.makeText(this, "请选择至少一种精饲料", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 adapter.setContent();
@@ -151,14 +159,15 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                         @Override
                         public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                             String responseData = response.body().string();
-//                          TODO 回调
+                            Result result = new Gson().fromJson(responseData, Result.class);
+                            if (Objects.equals(result.code, "success")) {
+                                // TODO 跳转更新
+                            } else if (Objects.equals(result.code, "failed")) {
+                                // TODO 询问是否进一步处理
+                            }
                         }
                     });
                 }
-                break;
-            case R.id.btn_2:
-                // TODO
-                adapter.setContent();
                 break;
         }
     }

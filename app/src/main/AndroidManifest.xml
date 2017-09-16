@@ -32,7 +32,8 @@
         <activity
             android:name=".activity.cow.CowAddActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".activity.optimize.FodderSelectActivity"></activity>
+        <activity android:name=".activity.optimize.FodderSelectActivity" />
+        <activity android:name=".activity.optimize.ResultActivity"></activity>
     </application>
 
 </manifest>
