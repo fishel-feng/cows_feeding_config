@@ -4,12 +4,16 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:textSize="20sp"
+        android:gravity="center"
         android:id="@+id/tv_result_name"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="1" />
 
     <TextView
+        android:textSize="20sp"
+        android:gravity="center"
         android:id="@+id/tv_result_dosage"
         android:layout_width="0dp"
         android:layout_height="50dp"

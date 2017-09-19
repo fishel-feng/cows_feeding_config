@@ -33,7 +33,7 @@ public class ResultActivity extends AppCompatActivity {
     private void initData() {
         result = (Result) getIntent().getSerializableExtra("result");
         lvResult.setAdapter(new ResultAdapter(this, R.layout.result_item, result.fodderResults));
-        tvTotalPrice.setText(result.price);
+        tvTotalPrice.setText("饲料总价格为："+result.price);
     }
 
     private void initEvent() {

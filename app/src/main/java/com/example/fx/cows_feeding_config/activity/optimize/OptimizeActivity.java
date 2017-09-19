@@ -48,7 +48,7 @@ import okhttp3.Response;
 public class OptimizeActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private static final String LP_URL = "http://127.0.0.1:80";
+    private static final String LP_URL = "http://www.mocky.io/v2/59c10e1b130000eb01d29cc1";
     private static final String FLP_URL = "http://127.0.0.1:80";
 
     private Button btnSelectCow;
