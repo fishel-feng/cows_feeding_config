@@ -250,6 +250,8 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                     });
                 }
                 break;
+            default:
+                break;
         }
     }
 
