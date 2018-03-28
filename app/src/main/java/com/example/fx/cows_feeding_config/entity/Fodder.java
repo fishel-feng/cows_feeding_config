@@ -15,18 +15,41 @@ public class Fodder extends DataSupport implements Parcelable {
 
     private String name;
 
-    //类型 1粗饲料2精饲料
+    //类型 1粗饲料 2精饲料 3添加剂
     private int type;
 
+    // 干物质
     private double dryMatter;
 
-    private double calcium;
+    // 粗蛋白
+    private double crudeProtein;
 
-    private double phosphorus;
-
+    // 能量
     private double energy;
 
-    private double crudeProtein;
+    // 钙
+    private double calcium;
+
+    // 磷
+    private double phosphorus;
+
+    // 钠
+    private double sodium;
+
+    // 氯
+    private double chlorine;
+
+    // 钾
+    private double potassium;
+
+    // 镁
+    private double magnesium;
+
+    // 硫
+    private double sulphur;
+
+    // 粗脂肪
+    private double crudeFat;
 
     private double price;
 
@@ -72,6 +95,22 @@ public class Fodder extends DataSupport implements Parcelable {
         this.dryMatter = dryMatter;
     }
 
+    public double getCrudeProtein() {
+        return crudeProtein;
+    }
+
+    public void setCrudeProtein(double crudeProtein) {
+        this.crudeProtein = crudeProtein;
+    }
+
+    public double getEnergy() {
+        return energy;
+    }
+
+    public void setEnergy(double energy) {
+        this.energy = energy;
+    }
+
     public double getCalcium() {
         return calcium;
     }
@@ -88,20 +127,52 @@ public class Fodder extends DataSupport implements Parcelable {
         this.phosphorus = phosphorus;
     }
 
-    public double getEnergy() {
-        return energy;
+    public double getSodium() {
+        return sodium;
     }
 
-    public void setEnergy(double energy) {
-        this.energy = energy;
+    public void setSodium(double sodium) {
+        this.sodium = sodium;
     }
 
-    public double getCrudeProtein() {
-        return crudeProtein;
+    public double getChlorine() {
+        return chlorine;
     }
 
-    public void setCrudeProtein(double crudeProtein) {
-        this.crudeProtein = crudeProtein;
+    public void setChlorine(double chlorine) {
+        this.chlorine = chlorine;
+    }
+
+    public double getPotassium() {
+        return potassium;
+    }
+
+    public void setPotassium(double potassium) {
+        this.potassium = potassium;
+    }
+
+    public double getMagnesium() {
+        return magnesium;
+    }
+
+    public void setMagnesium(double magnesium) {
+        this.magnesium = magnesium;
+    }
+
+    public double getSulphur() {
+        return sulphur;
+    }
+
+    public void setSulphur(double sulphur) {
+        this.sulphur = sulphur;
+    }
+
+    public double getCrudeFat() {
+        return crudeFat;
+    }
+
+    public void setCrudeFat(double crudeFat) {
+        this.crudeFat = crudeFat;
     }
 
     public double getPrice() {
@@ -144,7 +215,6 @@ public class Fodder extends DataSupport implements Parcelable {
         this.minDosage = minDosage;
     }
 
-
     public boolean isChecked() {
         return isChecked;
     }
@@ -156,24 +226,36 @@ public class Fodder extends DataSupport implements Parcelable {
     public Fodder() {
     }
 
-    public Fodder(String name, int type, double dryMatter, double calcium, double phosphorus, double energy, double crudeProtein) {
+    public Fodder(String name, int type, double dryMatter, double crudeProtein, double energy, double calcium, double phosphorus, double sodium, double chlorine, double potassium, double magnesium, double sulphur, double crudeFat) {
         this.name = name;
         this.type = type;
         this.dryMatter = dryMatter;
+        this.crudeProtein = crudeProtein;
+        this.energy = energy;
         this.calcium = calcium;
         this.phosphorus = phosphorus;
-        this.energy = energy;
-        this.crudeProtein = crudeProtein;
+        this.sodium = sodium;
+        this.chlorine = chlorine;
+        this.potassium = potassium;
+        this.magnesium = magnesium;
+        this.sulphur = sulphur;
+        this.crudeFat = crudeFat;
     }
 
-    public Fodder(String name, int type, double dryMatter, double calcium, double phosphorus, double energy, double crudeProtein, double price) {
+    public Fodder(String name, int type, double dryMatter, double crudeProtein, double energy, double calcium, double phosphorus, double sodium, double chlorine, double potassium, double magnesium, double sulphur, double crudeFat, double price) {
         this.name = name;
         this.type = type;
         this.dryMatter = dryMatter;
+        this.crudeProtein = crudeProtein;
+        this.energy = energy;
         this.calcium = calcium;
         this.phosphorus = phosphorus;
-        this.energy = energy;
-        this.crudeProtein = crudeProtein;
+        this.sodium = sodium;
+        this.chlorine = chlorine;
+        this.potassium = potassium;
+        this.magnesium = magnesium;
+        this.sulphur = sulphur;
+        this.crudeFat = crudeFat;
         this.price = price;
     }
 
@@ -189,10 +271,16 @@ public class Fodder extends DataSupport implements Parcelable {
         dest.writeString(this.name);
         dest.writeInt(this.type);
         dest.writeDouble(this.dryMatter);
+        dest.writeDouble(this.crudeProtein);
+        dest.writeDouble(this.energy);
         dest.writeDouble(this.calcium);
         dest.writeDouble(this.phosphorus);
-        dest.writeDouble(this.energy);
-        dest.writeDouble(this.crudeProtein);
+        dest.writeDouble(this.sodium);
+        dest.writeDouble(this.chlorine);
+        dest.writeDouble(this.potassium);
+        dest.writeDouble(this.magnesium);
+        dest.writeDouble(this.sulphur);
+        dest.writeDouble(this.crudeFat);
         dest.writeDouble(this.price);
         dest.writeByte(this.variable ? (byte) 1 : (byte) 0);
         dest.writeDouble(this.dosage);
@@ -206,10 +294,16 @@ public class Fodder extends DataSupport implements Parcelable {
         this.name = in.readString();
         this.type = in.readInt();
         this.dryMatter = in.readDouble();
+        this.crudeProtein = in.readDouble();
+        this.energy = in.readDouble();
         this.calcium = in.readDouble();
         this.phosphorus = in.readDouble();
-        this.energy = in.readDouble();
-        this.crudeProtein = in.readDouble();
+        this.sodium = in.readDouble();
+        this.chlorine = in.readDouble();
+        this.potassium = in.readDouble();
+        this.magnesium = in.readDouble();
+        this.sulphur = in.readDouble();
+        this.crudeFat = in.readDouble();
         this.price = in.readDouble();
         this.variable = in.readByte() != 0;
         this.dosage = in.readDouble();
