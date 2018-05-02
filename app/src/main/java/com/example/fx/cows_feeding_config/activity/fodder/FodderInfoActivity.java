@@ -22,10 +22,16 @@ public class FodderInfoActivity extends AppCompatActivity {
     private TextView tvName;
     private TextView tvType;
     private TextView tvDryMatter;
+    private TextView tvCrudeProtein;
+    private TextView tvEnergy;
     private TextView tvCalcium;
     private TextView tvPhosphorus;
-    private TextView tvEnergy;
-    private TextView tvCrudeProtein;
+    private TextView tvSodium;
+    private TextView tvChlorine;
+    private TextView tvPotassium;
+    private TextView tvMagnesium;
+    private TextView tvSulphur;
+    private TextView tvCrudeFat;
     private TextView tvPrice;
     private Button btnChangeFodder;
     private Button btnDeleteFodder;
@@ -70,10 +76,16 @@ public class FodderInfoActivity extends AppCompatActivity {
     private void initView() {
         this.tvPrice = (TextView) findViewById(R.id.tv_price);
         this.tvCrudeProtein = (TextView) findViewById(R.id.tv_crude_protein);
-        this.tvEnergy = (TextView) findViewById(R.id.tv_energy);
-        this.tvPhosphorus = (TextView) findViewById(R.id.tv_phosphorus);
-        this.tvCalcium = (TextView) findViewById(R.id.tv_calcium);
         this.tvDryMatter = (TextView) findViewById(R.id.tv_dry_matter);
+        this.tvEnergy = (TextView) findViewById(R.id.tv_energy);
+        this.tvCalcium = (TextView) findViewById(R.id.tv_calcium);
+        this.tvPhosphorus = (TextView) findViewById(R.id.tv_phosphorus);
+        this.tvSodium = (TextView) findViewById(R.id.tv_sodium);
+        this.tvChlorine = (TextView) findViewById(R.id.tv_chlorine);
+        this.tvPotassium = (TextView) findViewById(R.id.tv_potassium);
+        this.tvMagnesium = (TextView) findViewById(R.id.tv_magnesium);
+        this.tvSulphur = (TextView) findViewById(R.id.tv_sulphur);
+        this.tvCrudeFat = (TextView) findViewById(R.id.tv_crude_fat);
         this.tvType = (TextView) findViewById(R.id.tv_type);
         this.tvName = (TextView) findViewById(R.id.tv_name);
         this.btnChangeFodder = (Button) findViewById(R.id.btn_change_fodder);
@@ -85,10 +97,16 @@ public class FodderInfoActivity extends AppCompatActivity {
             tvName.setText(fodder.getName());
             tvType.setText(fodder.getType() == 1 ? "粗饲料" : "精饲料");
             tvDryMatter.setText(String.valueOf(fodder.getDryMatter()));
+            tvCrudeProtein.setText(String.valueOf(fodder.getCrudeProtein()));
+            tvEnergy.setText(String.valueOf(fodder.getEnergy()));
             tvCalcium.setText(String.valueOf(fodder.getCalcium()));
             tvPhosphorus.setText(String.valueOf(fodder.getPhosphorus()));
-            tvEnergy.setText(String.valueOf(fodder.getEnergy()));
-            tvCrudeProtein.setText(String.valueOf(fodder.getCrudeProtein()));
+            tvSodium.setText(String.valueOf(fodder.getSodium()));
+            tvChlorine.setText(String.valueOf(fodder.getChlorine()));
+            tvPotassium.setText(String.valueOf(fodder.getPotassium()));
+            tvMagnesium.setText(String.valueOf(fodder.getMagnesium()));
+            tvSulphur.setText(String.valueOf(fodder.getSulphur()));
+            tvCrudeFat.setText(String.valueOf(fodder.getCrudeFat()));
             tvPrice.setText(fodder.getPrice() != 0 ? String.valueOf(fodder.getPrice()) : "暂无价格");
         }
     }

@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             new Fodder("黄玉米", 2, 0.860, 0.079, 1.75, 0.24, 1.75, 0.18, 0.63, 3.24, 0.18, 0.9, 0.0365, 1).save();
             new Fodder("鱼粉", 2, 0.912, 0.6247, 2.12, 29.22, 19.46, 5.58, 6.57, 6.03, 0.29, 10.6, 0.0948, 5).save();
             new Fodder("碳酸氢钙", 3, 1, 0, 0, 182.6, 144.8, 0.5, 0, 0.6, 0.9, 0, 0, 1.2).save();
-            new Fodder("七水硫酸镁", 3, 0.98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3).save();
             editor.putBoolean("isFirstRun", false);
             editor.apply();
         }

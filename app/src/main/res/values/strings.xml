@@ -7,9 +7,9 @@
     <string name="type_text">饲料类型</string>
     <string name="dry_matter_text">干物质(%)</string>
     <string name="crude_protein_text">可消化粗蛋白(g/kg)</string>
-    <string name="energy_text">奶牛能量单位(NND/kg)</string>
-    <string name="calcium_text">钙(%)</string>
-    <string name="phosphorus_text">磷(%)</string>
+    <string name="energy_text">能量(NND/kg)</string>
+    <string name="calcium_text">钙(g/kg)</string>
+    <string name="phosphorus_text">磷(g/kg)</string>
     <string name="price_text">价格</string>
     <string name="variety_text">奶牛品种</string>
     <string name="weight_text">奶牛体重</string>
@@ -31,4 +31,10 @@
     <string name="select_min_text">用量\n下限</string>
     <string name="select_variable_text">是否\n可变</string>
     <string name="LP_text">开始计算</string>
+    <string name="sodium_text">钠(g/kg)</string>
+    <string name="chlorine_text">氯(g/kg)</string>
+    <string name="potassium_text">钾(g/kg)</string>
+    <string name="magnesium_text">镁(g/kg)</string>
+    <string name="sulphur_text">硫(g/kg)</string>
+    <string name="crude_fat_text">粗脂肪(g/kg)</string>
 </resources>
