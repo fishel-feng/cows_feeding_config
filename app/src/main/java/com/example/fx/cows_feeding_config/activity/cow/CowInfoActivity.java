@@ -20,11 +20,9 @@ public class CowInfoActivity extends AppCompatActivity {
 
     private TextView etVariety;
     private TextView etWeight;
-    private TextView etWeightChange;
+    private TextView etMilkDays;
     private TextView etMilkProduction;
     private TextView etMilkFat;
-    private TextView etMilkProtein;
-    private TextView etLactationWeeks;
     private Button btnChangeCow;
     private Button btnDeleteCow;
 
@@ -65,11 +63,9 @@ public class CowInfoActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        this.etLactationWeeks = (TextView) findViewById(R.id.tv_lactation_weeks);
-        this.etMilkProtein = (TextView) findViewById(R.id.tv_milk_protein);
         this.etMilkFat = (TextView) findViewById(R.id.tv_milk_fat);
         this.etMilkProduction = (TextView) findViewById(R.id.tv_milk_production);
-        this.etWeightChange = (TextView) findViewById(R.id.tv_weight_change);
+        this.etMilkDays = (TextView) findViewById(R.id.tv_milk_days);
         this.etWeight = (TextView) findViewById(R.id.tv_weight);
         this.etVariety = (TextView) findViewById(R.id.tv_variety);
         this.btnChangeCow = (Button) findViewById(R.id.btn_change_cow);
@@ -80,11 +76,9 @@ public class CowInfoActivity extends AppCompatActivity {
         if (cow != null) {
             etVariety.setText(String.valueOf(cow.getVariety()));
             etWeight.setText(String.valueOf(cow.getWeight()));
-            etWeightChange.setText(String.valueOf(cow.getWeightChange()));
+            etMilkDays.setText(String.valueOf(cow.getMilkDays()));
             etMilkProduction.setText(String.valueOf(cow.getMilkProduction()));
             etMilkFat.setText(String.valueOf(cow.getMilkFat()));
-            etMilkProtein.setText(String.valueOf(cow.getMilkProtein()));
-            etLactationWeeks.setText(String.valueOf(cow.getLactationWeeks()));
         }
     }
 

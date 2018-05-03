@@ -47,7 +47,7 @@ public class CowListAdapter extends ArrayAdapter<Cow> {
         }
         viewHolder.tv1.setText(cow.getVariety());
         viewHolder.tv2.setText(String.valueOf(cow.getWeight()));
-        viewHolder.tv3.setText(String.valueOf(cow.getMilkProtein()));
+        viewHolder.tv3.setText(String.valueOf(cow.getMilkProduction()));
         return view;
     }
 

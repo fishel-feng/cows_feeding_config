@@ -29,10 +29,16 @@ public class ObjectToJsonUtil {
             fodderObject.put("name", fodder.getName());
             fodderObject.put("type", String.valueOf(fodder.getType()));
             fodderObject.put("dry_matter", String.valueOf(fodder.getDryMatter()));
+            fodderObject.put("crude_protein", String.valueOf(fodder.getCrudeProtein()));
+            fodderObject.put("energy", String.valueOf(fodder.getEnergy()));
             fodderObject.put("calcium", String.valueOf(fodder.getCalcium()));
             fodderObject.put("phosphorus", String.valueOf(fodder.getPhosphorus()));
-            fodderObject.put("energy", String.valueOf(fodder.getEnergy()));
-            fodderObject.put("crude_protein", String.valueOf(fodder.getCrudeProtein()));
+            fodderObject.put("sodium", String.valueOf(fodder.getSodium()));
+            fodderObject.put("chlorine", String.valueOf(fodder.getChlorine()));
+            fodderObject.put("potassium", String.valueOf(fodder.getPotassium()));
+            fodderObject.put("magnesium", String.valueOf(fodder.getMagnesium()));
+            fodderObject.put("sulphur", String.valueOf(fodder.getSulphur()));
+            fodderObject.put("crude_fat", String.valueOf(fodder.getCrudeFat()));
             fodderObject.put("price", String.valueOf(fodder.getPrice()));
             fodderObject.put("variable", String.valueOf(fodder.isVariable()));
             fodderObject.put("dosage", String.valueOf(fodder.getDosage()));
@@ -42,11 +48,9 @@ public class ObjectToJsonUtil {
         }
         cowObject.put("variety", cow.getVariety());
         cowObject.put("weight", String.valueOf(cow.getWeight()));
-        cowObject.put("weight_change", String.valueOf(cow.getWeightChange()));
+        cowObject.put("milk_days", String.valueOf(cow.getMilkDays()));
         cowObject.put("milk_production", String.valueOf(cow.getMilkProduction()));
         cowObject.put("milk_fat", String.valueOf(cow.getMilkFat()));
-        cowObject.put("milk_protein", String.valueOf(cow.getMilkProtein()));
-        cowObject.put("lactation_weeks", String.valueOf(cow.getLactationWeeks()));
         return result;
     }
 }

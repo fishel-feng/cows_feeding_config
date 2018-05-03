@@ -18,11 +18,9 @@ public class CowAddActivity extends AppCompatActivity {
 
     private EditText etVariety;
     private EditText etWeight;
-    private EditText etWeightChange;
+    private EditText etMilkDays;
     private EditText etMilkProduction;
     private EditText etMilkFat;
-    private EditText etMilkProtein;
-    private EditText etLactationWeeks;
     private Button btnSubmitCow;
 
     private Cow cow;
@@ -37,11 +35,9 @@ public class CowAddActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        this.etLactationWeeks = (EditText) findViewById(R.id.et_lactation_weeks);
-        this.etMilkProtein = (EditText) findViewById(R.id.et_milk_protein);
         this.etMilkFat = (EditText) findViewById(R.id.et_milk_fat);
         this.etMilkProduction = (EditText) findViewById(R.id.et_milk_production);
-        this.etWeightChange = (EditText) findViewById(R.id.et_weight_change);
+        this.etMilkDays = (EditText) findViewById(R.id.et_milk_days);
         this.etWeight = (EditText) findViewById(R.id.et_weight);
         this.etVariety = (EditText) findViewById(R.id.et_variety);
         this.btnSubmitCow = (Button) findViewById(R.id.btn_submit_cow);
@@ -52,11 +48,9 @@ public class CowAddActivity extends AppCompatActivity {
         if (cow != null) {
             etVariety.setText(String.valueOf(cow.getVariety()));
             etWeight.setText(String.valueOf(cow.getWeight()));
-            etWeightChange.setText(String.valueOf(cow.getWeightChange()));
+            etMilkDays.setText(String.valueOf(cow.getMilkDays()));
             etMilkProduction.setText(String.valueOf(cow.getMilkProduction()));
             etMilkFat.setText(String.valueOf(cow.getMilkFat()));
-            etMilkProtein.setText(String.valueOf(cow.getMilkProtein()));
-            etLactationWeeks.setText(String.valueOf(cow.getLactationWeeks()));
         }
     }
 
@@ -76,11 +70,9 @@ public class CowAddActivity extends AppCompatActivity {
                 }
                 target.setVariety(etVariety.getText().toString());
                 target.setWeight(!"".equals(etWeight.getText().toString().trim()) ? Double.valueOf(etWeight.getText().toString()) : 0);
-                target.setWeightChange(!"".equals(etWeightChange.getText().toString().trim()) ? Double.valueOf(etWeightChange.getText().toString()) : 0);
+                target.setMilkDays(!"".equals(etMilkDays.getText().toString().trim()) ? Double.valueOf(etMilkDays.getText().toString()) : 0);
                 target.setMilkProduction(!"".equals(etMilkProduction.getText().toString().trim()) ? Double.valueOf(etMilkProduction.getText().toString()) : 0);
                 target.setMilkFat(!"".equals(etMilkFat.getText().toString().trim()) ? Double.valueOf(etMilkFat.getText().toString()) : 0);
-                target.setMilkProtein(!"".equals(etMilkProtein.getText().toString().trim()) ? Double.valueOf(etMilkProtein.getText().toString()) : 0);
-                target.setLactationWeeks(!"".equals(etLactationWeeks.getText().toString().trim()) ? Double.valueOf(etLactationWeeks.getText().toString()) : 0);
                 target.save();
                 Intent intent = getIntent();
                 Bundle bundle = intent.getExtras();

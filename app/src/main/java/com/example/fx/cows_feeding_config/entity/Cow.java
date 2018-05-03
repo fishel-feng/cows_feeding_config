@@ -13,19 +13,20 @@ public class Cow extends DataSupport implements Parcelable {
 
     private int id;
 
+    // 品种
     private String variety;
 
+    // 体重
     private double weight;
 
-    private double weightChange;
+    // 产奶天数
+    private double milkDays;
 
+    // 产奶量
     private double milkProduction;
 
+    // 乳脂率
     private double milkFat;
-
-    private double milkProtein;
-
-    private double lactationWeeks;
 
     public int getId() {
         return id;
@@ -51,12 +52,12 @@ public class Cow extends DataSupport implements Parcelable {
         this.weight = weight;
     }
 
-    public double getWeightChange() {
-        return weightChange;
+    public double getMilkDays() {
+        return milkDays;
     }
 
-    public void setWeightChange(double weightChange) {
-        this.weightChange = weightChange;
+    public void setMilkDays(double milkDays) {
+        this.milkDays = milkDays;
     }
 
     public double getMilkProduction() {
@@ -75,22 +76,6 @@ public class Cow extends DataSupport implements Parcelable {
         this.milkFat = milkFat;
     }
 
-    public double getMilkProtein() {
-        return milkProtein;
-    }
-
-    public void setMilkProtein(double milkProtein) {
-        this.milkProtein = milkProtein;
-    }
-
-    public double getLactationWeeks() {
-        return lactationWeeks;
-    }
-
-    public void setLactationWeeks(double lactationWeeks) {
-        this.lactationWeeks = lactationWeeks;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -101,11 +86,9 @@ public class Cow extends DataSupport implements Parcelable {
         dest.writeInt(this.id);
         dest.writeString(this.variety);
         dest.writeDouble(this.weight);
-        dest.writeDouble(this.weightChange);
+        dest.writeDouble(this.milkDays);
         dest.writeDouble(this.milkProduction);
         dest.writeDouble(this.milkFat);
-        dest.writeDouble(this.milkProtein);
-        dest.writeDouble(this.lactationWeeks);
     }
 
     public Cow() {
@@ -115,11 +98,9 @@ public class Cow extends DataSupport implements Parcelable {
         this.id = in.readInt();
         this.variety = in.readString();
         this.weight = in.readDouble();
-        this.weightChange = in.readDouble();
+        this.milkDays = in.readDouble();
         this.milkProduction = in.readDouble();
         this.milkFat = in.readDouble();
-        this.milkProtein = in.readDouble();
-        this.lactationWeeks = in.readDouble();
     }
 
     public static final Creator<Cow> CREATOR = new Creator<Cow>() {
