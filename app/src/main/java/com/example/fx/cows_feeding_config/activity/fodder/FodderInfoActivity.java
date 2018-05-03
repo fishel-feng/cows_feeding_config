@@ -95,7 +95,7 @@ public class FodderInfoActivity extends AppCompatActivity {
     private void initData(Fodder fodder) {
         if (fodder != null) {
             tvName.setText(fodder.getName());
-            tvType.setText(fodder.getType() == 1 ? "粗饲料" : "精饲料");
+            tvType.setText(fodder.getType() == 1 ? "粗饲料" : fodder.getType() == 2 ? "精饲料" : "添加剂");
             tvDryMatter.setText(String.valueOf(fodder.getDryMatter()));
             tvCrudeProtein.setText(String.valueOf(fodder.getCrudeProtein()));
             tvEnergy.setText(String.valueOf(fodder.getEnergy()));
@@ -131,8 +131,8 @@ public class FodderInfoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         DataSupport.delete(Fodder.class, fodder.getId());
-                        Intent intent=getIntent();
-                        intent.putExtra("del",position);
+                        Intent intent = getIntent();
+                        intent.putExtra("del", position);
                         Bundle bundle = new Bundle();
                         intent.putExtras(bundle);
                         setResult(RESULT_CANCELED, intent);

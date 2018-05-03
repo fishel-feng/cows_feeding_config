@@ -67,7 +67,7 @@ public class FodderAdapter extends RecyclerView.Adapter<FodderAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         Fodder fodder = fodderList.get(position);
         holder.tvFodderName.setText(fodder.getName());
-        holder.tvFodderType.setText(fodder.getType() == 1 ? "粗饲料" : "精饲料");
+        holder.tvFodderType.setText(fodder.getType() == 1 ? "粗饲料" : fodder.getType() == 2 ? "精饲料" : "添加剂");
         holder.tvFodderPrice.setText(fodder.getPrice()!=0?String.valueOf(fodder.getPrice()):"暂无价格");
         holder.itemView.setTag(position);
     }
