@@ -25,6 +25,9 @@ public class Cow extends DataSupport implements Parcelable {
     // 产奶量
     private double milkProduction;
 
+    // 泌乳周
+    private double milkWeek;
+
     // 乳脂率
     private double milkFat;
 
@@ -68,6 +71,14 @@ public class Cow extends DataSupport implements Parcelable {
         this.milkProduction = milkProduction;
     }
 
+    public double getMilkWeek() {
+        return milkWeek;
+    }
+
+    public void setMilkWeek(double milkWeek) {
+        this.milkWeek = milkWeek;
+    }
+
     public double getMilkFat() {
         return milkFat;
     }
@@ -88,6 +99,7 @@ public class Cow extends DataSupport implements Parcelable {
         dest.writeDouble(this.weight);
         dest.writeDouble(this.milkDays);
         dest.writeDouble(this.milkProduction);
+        dest.writeDouble(this.milkWeek);
         dest.writeDouble(this.milkFat);
     }
 
@@ -100,6 +112,7 @@ public class Cow extends DataSupport implements Parcelable {
         this.weight = in.readDouble();
         this.milkDays = in.readDouble();
         this.milkProduction = in.readDouble();
+        this.milkWeek = in.readDouble();
         this.milkFat = in.readDouble();
     }
 

@@ -21,6 +21,7 @@ public class CowAddActivity extends AppCompatActivity {
     private EditText etMilkDays;
     private EditText etMilkProduction;
     private EditText etMilkFat;
+    private EditText etMilkWeek;
     private Button btnSubmitCow;
 
     private Cow cow;
@@ -36,6 +37,7 @@ public class CowAddActivity extends AppCompatActivity {
 
     private void initView() {
         this.etMilkFat = (EditText) findViewById(R.id.et_milk_fat);
+        this.etMilkWeek = (EditText) findViewById(R.id.et_milk_week);
         this.etMilkProduction = (EditText) findViewById(R.id.et_milk_production);
         this.etMilkDays = (EditText) findViewById(R.id.et_milk_days);
         this.etWeight = (EditText) findViewById(R.id.et_weight);
@@ -50,6 +52,7 @@ public class CowAddActivity extends AppCompatActivity {
             etWeight.setText(String.valueOf(cow.getWeight()));
             etMilkDays.setText(String.valueOf(cow.getMilkDays()));
             etMilkProduction.setText(String.valueOf(cow.getMilkProduction()));
+            etMilkWeek.setText(String.valueOf(cow.getMilkWeek()));
             etMilkFat.setText(String.valueOf(cow.getMilkFat()));
         }
     }
@@ -72,6 +75,7 @@ public class CowAddActivity extends AppCompatActivity {
                 target.setWeight(!"".equals(etWeight.getText().toString().trim()) ? Double.valueOf(etWeight.getText().toString()) : 0);
                 target.setMilkDays(!"".equals(etMilkDays.getText().toString().trim()) ? Double.valueOf(etMilkDays.getText().toString()) : 0);
                 target.setMilkProduction(!"".equals(etMilkProduction.getText().toString().trim()) ? Double.valueOf(etMilkProduction.getText().toString()) : 0);
+                target.setMilkWeek(!"".equals(etMilkWeek.getText().toString().trim()) ? Double.valueOf(etMilkWeek.getText().toString()) : 0);
                 target.setMilkFat(!"".equals(etMilkFat.getText().toString().trim()) ? Double.valueOf(etMilkFat.getText().toString()) : 0);
                 target.save();
                 Intent intent = getIntent();

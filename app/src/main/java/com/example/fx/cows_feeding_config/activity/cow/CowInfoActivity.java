@@ -18,11 +18,12 @@ import org.litepal.crud.DataSupport;
 
 public class CowInfoActivity extends AppCompatActivity {
 
-    private TextView etVariety;
-    private TextView etWeight;
-    private TextView etMilkDays;
-    private TextView etMilkProduction;
-    private TextView etMilkFat;
+    private TextView tvVariety;
+    private TextView tvWeight;
+    private TextView tvMilkDays;
+    private TextView tvMilkProduction;
+    private TextView tvMilkWeek;
+    private TextView tvMilkFat;
     private Button btnChangeCow;
     private Button btnDeleteCow;
 
@@ -63,22 +64,24 @@ public class CowInfoActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        this.etMilkFat = (TextView) findViewById(R.id.tv_milk_fat);
-        this.etMilkProduction = (TextView) findViewById(R.id.tv_milk_production);
-        this.etMilkDays = (TextView) findViewById(R.id.tv_milk_days);
-        this.etWeight = (TextView) findViewById(R.id.tv_weight);
-        this.etVariety = (TextView) findViewById(R.id.tv_variety);
+        this.tvMilkFat = (TextView) findViewById(R.id.tv_milk_fat);
+        this.tvMilkWeek = (TextView) findViewById(R.id.tv_milk_week);
+        this.tvMilkProduction = (TextView) findViewById(R.id.tv_milk_production);
+        this.tvMilkDays = (TextView) findViewById(R.id.tv_milk_days);
+        this.tvWeight = (TextView) findViewById(R.id.tv_weight);
+        this.tvVariety = (TextView) findViewById(R.id.tv_variety);
         this.btnChangeCow = (Button) findViewById(R.id.btn_change_cow);
         this.btnDeleteCow = (Button) findViewById(R.id.btn_delete_cow);
     }
 
     private void initData(Cow cow) {
         if (cow != null) {
-            etVariety.setText(String.valueOf(cow.getVariety()));
-            etWeight.setText(String.valueOf(cow.getWeight()));
-            etMilkDays.setText(String.valueOf(cow.getMilkDays()));
-            etMilkProduction.setText(String.valueOf(cow.getMilkProduction()));
-            etMilkFat.setText(String.valueOf(cow.getMilkFat()));
+            tvVariety.setText(String.valueOf(cow.getVariety()));
+            tvWeight.setText(String.valueOf(cow.getWeight()));
+            tvMilkDays.setText(String.valueOf(cow.getMilkDays()));
+            tvMilkProduction.setText(String.valueOf(cow.getMilkProduction()));
+            tvMilkWeek.setText(String.valueOf(cow.getMilkWeek()));
+            tvMilkFat.setText(String.valueOf(cow.getMilkFat()));
         }
     }
 

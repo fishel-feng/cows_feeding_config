@@ -35,4 +35,5 @@
     <string name="sulphur_text">硫(g/kg)</string>
     <string name="crude_fat_text">粗脂肪(g/kg)</string>
     <string name="milk_days_text">产奶天数</string>
+    <string name="milk_week_text">泌乳周</string>
 </resources>
