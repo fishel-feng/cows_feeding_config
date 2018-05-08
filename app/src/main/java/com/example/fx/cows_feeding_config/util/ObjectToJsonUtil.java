@@ -50,6 +50,7 @@ public class ObjectToJsonUtil {
         cowObject.put("weight", String.valueOf(cow.getWeight()));
         cowObject.put("milk_days", String.valueOf(cow.getMilkDays()));
         cowObject.put("milk_production", String.valueOf(cow.getMilkProduction()));
+        cowObject.put("milk_week", String.valueOf(cow.getMilkWeek()));
         cowObject.put("milk_fat", String.valueOf(cow.getMilkFat()));
         return result;
     }
