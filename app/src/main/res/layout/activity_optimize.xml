@@ -82,7 +82,7 @@
 
         <Button
             android:text="@string/LP_text"
-            android:id="@+id/btn_LP"
+            android:id="@+id/btn_res"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />

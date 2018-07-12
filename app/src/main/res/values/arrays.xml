@@ -9,4 +9,14 @@
         <item>固定</item>
         <item>可变</item>
     </string-array>
+    <string-array name="methods">
+        <item>线性规划</item>
+        <item>模糊线性规划</item>
+        <item>普通遗传算法</item>
+        <item>三个种群并行</item>
+        <item>动态变化阈值（三个阶段）</item>
+        <item>动态变化阈值（一个阶段）</item>
+        <item>两代竞争</item>
+        <item>更改交叉率</item>
+    </string-array>
 </resources>

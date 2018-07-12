@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -50,6 +49,8 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private static final String LP_URL = "http://www.mocky.io/v2/59c10e1b130000eb01d29cc1";
     private static final String FLP_URL = "http://127.0.0.1:80";
+    private static final String BASE_URL = "http://127.0.0.1:8080/";
+    private static final String[] METHODS = new String[]{"LP", "FLP", "BasicGenetic", "ThreeTypeGenetic", "DynamicThreeGenetic", "DynamicOneGenetic", "TwoRaceGenetic", "ChangeCrossGenetic"};
 
     private Button btnSelectCow;
     private Button btnSelectFodder;
@@ -84,7 +85,7 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
         this.btnSelectCow = (Button) findViewById(R.id.btn_select_cow);
         this.btnSelectFodder = (Button) findViewById(R.id.btn_select_fodder);
         this.lvSelectFodder = (ListView) findViewById(R.id.lv_select_fodder);
-        this.btnOptimize = (Button) findViewById(R.id.btn_LP);
+        this.btnOptimize = (Button) findViewById(R.id.btn_res);
     }
 
     private void initData() {
@@ -121,7 +122,7 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                 intent.putParcelableArrayListExtra("infoList", (ArrayList<? extends Parcelable>) fodderInfoList);
                 startActivityForResult(intent, 8);
                 break;
-            case R.id.btn_LP:
+            case R.id.btn_res:
                 if (cow == null) {
                     Toast.makeText(this, "请选择奶牛营养指标", Toast.LENGTH_SHORT).show();
                     return;
@@ -139,115 +140,68 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
                     return;
                 }
                 adapter.setContent();
-                OkHttpClient client = new OkHttpClient();
+                final OkHttpClient client = new OkHttpClient();
                 JSONObject requestObject = null;
+                RequestBody requestBody = null;
                 try {
                     requestObject = ObjectToJsonUtil.objectToJson(fodderInfoList, cow, coarse, concentrate);
+                    requestBody = RequestBody.create(JSON, requestObject.toString());
                 } catch (JSONException e) {
                     Toast.makeText(this, "未知错误", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
                 if (requestObject != null) {
-                    RequestBody requestBody = RequestBody.create(JSON, requestObject.toString());
-                    Request request = new Request.Builder().url(LP_URL).post(requestBody).build();
-                    showProgressDialog(OptimizeActivity.this);
-                    client.newCall(request).enqueue(new Callback() {
+                    final RequestBody bodyContent = requestBody;
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setSingleChoiceItems(R.array.methods, 0, new DialogInterface.OnClickListener() {
                         @Override
-                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                            closeProgressDialog();
-                            OptimizeActivity.this.runOnUiThread(new Runnable() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            String url = METHODS[which];
+                            Request request = new Request.Builder().url(BASE_URL + url).post(bodyContent).build();
+                            showProgressDialog(OptimizeActivity.this);
+                            client.newCall(request).enqueue(new Callback() {
                                 @Override
-                                public void run() {
-                                    Toast.makeText(OptimizeActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                                public void onFailure(Call call, IOException e) {
+                                    closeProgressDialog();
+                                    OptimizeActivity.this.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(OptimizeActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
                                 }
-                            });
-                        }
 
-                        @Override
-                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                            String responseData = response.body().string();
-                            final Result result = new Gson().fromJson(responseData, Result.class);
-                            if (Objects.equals(result.code, "success")) {
-                                OptimizeActivity.this.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        closeProgressDialog();
-                                        Intent intent = new Intent(OptimizeActivity.this, ResultActivity.class);
-                                        intent.putExtra("result", result);
-                                        startActivity(intent);
-                                    }
-                                });
-                            } else if (Objects.equals(result.code, "failed")) {
-                                OptimizeActivity.this.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        closeProgressDialog();
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(OptimizeActivity.this);
-                                        builder.setMessage("没有最优方案，是否进行调整计算");
-                                        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                    // TODO 请求结果
+                                    String responseData = response.body().string();
+                                    final Result result = new Gson().fromJson(responseData, Result.class);
+                                    if (Objects.equals(result.code, "success")) {
+                                        OptimizeActivity.this.runOnUiThread(new Runnable() {
                                             @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                OkHttpClient client = new OkHttpClient();
-                                                JSONObject requestObject = null;
-                                                try {
-                                                    requestObject = ObjectToJsonUtil.objectToJson(fodderInfoList, cow, coarse, concentrate);
-                                                } catch (JSONException e) {
-                                                    Toast.makeText(OptimizeActivity.this, "未知错误", Toast.LENGTH_SHORT).show();
-                                                    e.printStackTrace();
-                                                }
-                                                if (requestObject != null) {
-                                                    RequestBody requestBody = RequestBody.create(JSON, requestObject.toString());
-                                                    Request request = new Request.Builder().url(LP_URL).post(requestBody).build();
-                                                    showProgressDialog(OptimizeActivity.this);
-                                                    client.newCall(request).enqueue(new Callback() {
-                                                        @Override
-                                                        public void onFailure(Call call, IOException e) {
-                                                            closeProgressDialog();
-                                                            OptimizeActivity.this.runOnUiThread(new Runnable() {
-                                                                @Override
-                                                                public void run() {
-                                                                    Toast.makeText(OptimizeActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
-                                                                }
-                                                            });
-                                                        }
-
-                                                        @Override
-                                                        public void onResponse(Call call, Response response) throws IOException {
-                                                            String responseData = response.body().string();
-                                                            final Result result = new Gson().fromJson(responseData, Result.class);
-                                                            if (Objects.equals(result.code, "success")) {
-                                                                OptimizeActivity.this.runOnUiThread(new Runnable() {
-                                                                    @Override
-                                                                    public void run() {
-                                                                        closeProgressDialog();
-                                                                        Intent intent = new Intent(OptimizeActivity.this, ResultActivity.class);
-                                                                        intent.putExtra("result", result);
-                                                                        startActivity(intent);
-                                                                    }
-                                                                });
-                                                            } else if (Objects.equals(result.code, "failed")) {
-                                                                OptimizeActivity.this.runOnUiThread(new Runnable() {
-                                                                    @Override
-                                                                    public void run() {
-                                                                        closeProgressDialog();
-                                                                        AlertDialog.Builder builder = new AlertDialog.Builder(OptimizeActivity.this);
-                                                                        builder.setMessage("没很抱歉没有计算出结果");
-                                                                        builder.create().show();
-                                                                    }
-                                                                });
-                                                            }
-                                                        }
-                                                    });
-                                                }
+                                            public void run() {
+                                                closeProgressDialog();
+                                                Intent intent = new Intent(OptimizeActivity.this, ResultActivity.class);
+                                                intent.putExtra("result", result);
+                                                startActivity(intent);
                                             }
                                         });
-                                        builder.setPositiveButton("否", null);
-                                        builder.create().show();
+                                    } else if (Objects.equals(result.code, "failed")) {
+                                        closeProgressDialog();
+                                        OptimizeActivity.this.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(OptimizeActivity.this, "未知错误", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     }
-                                });
-                            }
+                                }
+                            });
+                            dialog.dismiss();
                         }
                     });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
                 break;
             default:
