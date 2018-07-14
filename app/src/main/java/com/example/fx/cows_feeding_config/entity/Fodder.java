@@ -15,7 +15,7 @@ public class Fodder extends DataSupport implements Parcelable {
 
     private String name;
 
-    //类型 1粗饲料 2精饲料 3添加剂
+    //类型 1精饲料 2粗饲料 3添加剂
     private int type;
 
     // 干物质

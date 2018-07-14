@@ -30,7 +30,6 @@ import org.litepal.crud.DataSupport;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -173,28 +172,34 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
 
                                 @Override
                                 public void onResponse(Call call, Response response) throws IOException {
-                                    // TODO 请求结果
                                     String responseData = response.body().string();
                                     final Result result = new Gson().fromJson(responseData, Result.class);
-                                    if (Objects.equals(result.code, "success")) {
-                                        OptimizeActivity.this.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                closeProgressDialog();
-                                                Intent intent = new Intent(OptimizeActivity.this, ResultActivity.class);
-                                                intent.putExtra("result", result);
-                                                startActivity(intent);
-                                            }
-                                        });
-                                    } else if (Objects.equals(result.code, "failed")) {
-                                        closeProgressDialog();
-                                        OptimizeActivity.this.runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(OptimizeActivity.this, "未知错误", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                                    }
+                                    OptimizeActivity.this.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            closeProgressDialog();
+                                            Toast.makeText(OptimizeActivity.this, result.code, Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+//                                    if (Objects.equals(result.code, "success")) {
+//                                        OptimizeActivity.this.runOnUiThread(new Runnable() {
+//                                            @Override
+//                                            public void run() {
+//                                                closeProgressDialog();
+//                                                Intent intent = new Intent(OptimizeActivity.this, ResultActivity.class);
+//                                                intent.putExtra("result", result);
+//                                                startActivity(intent);
+//                                            }
+//                                        });
+//                                    } else if (Objects.equals(result.code, "failed")) {
+//                                        closeProgressDialog();
+//                                        OptimizeActivity.this.runOnUiThread(new Runnable() {
+//                                            @Override
+//                                            public void run() {
+//                                                Toast.makeText(OptimizeActivity.this, "未知错误", Toast.LENGTH_SHORT).show();
+//                                            }
+//                                        });
+//                                    }
                                 }
                             });
                             dialog.dismiss();
@@ -237,9 +242,9 @@ public class OptimizeActivity extends AppCompatActivity implements View.OnClickL
             int coarseNum = 0;
             int concentrateNum = 0;
             for (Fodder fodder : fodderInfoList) {
-                if (fodder.getType() == 1) {
+                if (fodder.getType() == 2) {
                     coarseNum++;
-                } else if (fodder.getType() == 2) {
+                } else if (fodder.getType() == 1) {
                     concentrateNum++;
                 }
             }

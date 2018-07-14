@@ -95,7 +95,7 @@ public class FodderInfoActivity extends AppCompatActivity {
     private void initData(Fodder fodder) {
         if (fodder != null) {
             tvName.setText(fodder.getName());
-            tvType.setText(fodder.getType() == 1 ? "粗饲料" : fodder.getType() == 2 ? "精饲料" : "添加剂");
+            tvType.setText(fodder.getType() == 1 ? "精饲料" : fodder.getType() == 2 ? "粗饲料" : "添加剂");
             tvDryMatter.setText(String.valueOf(fodder.getDryMatter()));
             tvCrudeProtein.setText(String.valueOf(fodder.getCrudeProtein()));
             tvEnergy.setText(String.valueOf(fodder.getEnergy()));
